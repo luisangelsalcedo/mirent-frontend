@@ -1,0 +1,17 @@
+@import "../../scss/colors.scss";
+@import "../../scss/fonts.scss";
+
+// COMPONENT
+.title-field {
+  margin-bottom: 1rem;
+  color: $color-dark;
+  font-family: $inika;
+  font-weight: bold;
+}
+
+// DARK
+.dark {
+  .title-field {
+    color: #fff;
+  }
+}

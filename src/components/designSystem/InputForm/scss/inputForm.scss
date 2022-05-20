@@ -1,0 +1,66 @@
+@import "../../scss/colors.scss";
+
+// colors
+$input-form-text: $color-dark;
+$input-form-bg: $color-grey-0;
+$input-form-placeholder: #bbb;
+
+$input-form-text-dark: #fff;
+$input-form-bg-dark: $color-black;
+$input-form-placeholder-dark: #4f717a;
+
+.input-form {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  background: $input-form-bg;
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+
+  input {
+    width: 100%;
+    border: 0;
+    outline: none;
+    font-size: 1rem;
+    padding: 0.7rem 0.5rem;
+    background: transparent;
+    color: $input-form-text;
+
+    &::placeholder {
+      color: $input-form-placeholder;
+    }
+
+    &:-internal-autofill-selected {
+      background-color: transparent !important;
+      appearance: inherit !important;
+      color: inherit !important;
+    }
+  }
+
+  i {
+    position: absolute;
+    margin-left: 1rem;
+    color: $input-form-placeholder;
+    & + input {
+      padding-left: 2.8rem;
+    }
+  }
+}
+
+.dark {
+  .input-form {
+    background: $input-form-bg-dark;
+
+    input {
+      color: $input-form-text-dark;
+      &::placeholder {
+        color: $input-form-placeholder-dark;
+      }
+    }
+
+    i {
+      color: $input-form-placeholder-dark;
+    }
+  }
+}

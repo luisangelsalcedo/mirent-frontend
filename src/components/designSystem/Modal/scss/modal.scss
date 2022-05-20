@@ -1,0 +1,83 @@
+@import "../../scss/colors.scss";
+.modal {
+  position: fixed;
+  z-index: 30;
+  overflow: hidden;
+  width: 0;
+  height: 0;
+  border-radius: 100%;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background: rgba($color: $color-black, $alpha: 0.9);
+  transition: all 0.4s ease;
+  opacity: 0;
+
+  & > button {
+    position: absolute !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  &-content {
+    position: relative;
+    background: $color-main;
+    border: solid 0.25rem rgba($color: #fff, $alpha: 1);
+    padding: 1.8rem;
+    border-radius: 1rem;
+  }
+
+  .title-field {
+    color: #fff;
+  }
+
+  .btn {
+    border-color: #fff !important;
+    span {
+      color: #fff !important;
+    }
+  }
+
+  .closeBtn {
+    position: absolute !important;
+    right: -0.8rem;
+    top: -0.8rem;
+    margin: 0 !important;
+
+    &:hover {
+      opacity: 1 !important;
+      i {
+        opacity: 0.5;
+      }
+    }
+  }
+
+  &.show {
+    opacity: 1;
+    width: 100%;
+    height: 100vh;
+    border-radius: 0;
+  }
+}
+
+@media (max-width: 400px) {
+  .modal {
+    &-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .closeBtn {
+      position: absolute !important;
+      right: inherit;
+
+      margin: auto;
+    }
+  }
+}

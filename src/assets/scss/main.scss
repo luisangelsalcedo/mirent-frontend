@@ -1,0 +1,82 @@
+@import "colors.scss";
+@import "fonts.scss";
+@import "default.scss";
+
+main {
+  color: $color-dark;
+  min-height: 100vh;
+  &.dark {
+    background: $color-dark;
+    color: white;
+  }
+}
+
+// // general
+.container {
+  padding: 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+}
+
+// .logo {
+//   display: flex;
+//   justify-content: center;
+//   margin: 1em 0 1rem 0;
+//   max-width: 200px;
+// }
+
+// a {
+//   color: $color-blue;
+//   font-weight: bold;
+//   text-decoration: none;
+//   transition: all 0.3s ease;
+//   &:hover {
+//     opacity: 0.7;
+//   }
+// }
+
+// .bg-red {
+//   background: $color-main;
+//   color: #fff;
+
+//   .btn {
+//     color: #fff !important;
+//     border-color: #fff !important;
+//     i {
+//       color: #fff;
+//     }
+//   }
+// }
+
+// .dark {
+//   color: #fff;
+//   background: $color-dark;
+//   transition: all 0.3s ease;
+
+//   .bg-red {
+//     .btn {
+//       border-color: $color-main !important;
+//     }
+//   }
+// }
+
+// .grey {
+//   background: $color-grey-1;
+// }
+
+// .ds {
+//   & .light,
+//   & .dark,
+//   & .red,
+//   & .grey {
+//     padding: 1.5rem;
+//   }
+// }

@@ -1,0 +1,39 @@
+@import "../../scss/colors.scss";
+
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  height: auto !important;
+  border: 0;
+  outline: none;
+  background: transparent;
+  .img {
+    width: 2.3rem;
+    height: 2.3rem;
+    border-radius: 2.3rem;
+    border: solid 2px $color-main;
+    margin-left: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    text-transform: uppercase;
+    color: #fff;
+    background: $color-dark;
+    font-size: 1.1rem;
+    font-weight: 200;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+
+.dark {
+  .avatar {
+    color: #fff;
+  }
+}

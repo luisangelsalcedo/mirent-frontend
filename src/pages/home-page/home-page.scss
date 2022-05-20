@@ -1,0 +1,73 @@
+@import "../../assets/scss/colors.scss";
+@media (min-width: 0) {
+  .home {
+    height: 100vh;
+
+    &-left {
+      width: 100%;
+      height: 100vh;
+      background: url(../../assets/img/portada.png) no-repeat center center;
+      background-size: auto 100%;
+      opacity: 0.2;
+      transition: all 0.2s ease;
+    }
+
+    &-right {
+      width: 100%;
+      height: 100vh;
+      position: absolute;
+      top: 0;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      transition: all 0.2s ease;
+
+      .logo {
+        width: 12rem;
+        margin-bottom: 2rem;
+      }
+      .container {
+        align-items: center;
+        & > div {
+          width: 20rem;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+      .opcion-foot {
+        margin-top: 1.5rem;
+        a {
+          color: $color-secondary;
+        }
+      }
+    }
+
+    .toggle-mode {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+    }
+  }
+}
+
+@media (min-width: 800px) {
+  .home {
+    display: flex;
+
+    &-left {
+      width: 50%;
+      opacity: 1;
+    }
+
+    &-right {
+      width: 50%;
+      position: static;
+    }
+  }
+}
+
+.dark {
+}
