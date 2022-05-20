@@ -2,9 +2,9 @@ import { Logo } from "./Logo";
 import { ToggleMode, ColorModeContext, ColorModeProvider } from "./ToggleMode";
 import { TitleField } from "./TitleField";
 import { Btn } from "./Btn";
+import { InputForm } from "./InputForm";
 // import { FavItem } from "./FavItem";
 // import { FavList } from "./FavList";
-// import { InputForm } from "./InputForm";
 // import { Avatar } from "./Avatar";
 // import { Modal, ModalContext, ModalProvider } from "./Modal";
 // import { Preloading, LoadingMain } from "./Preloading";
@@ -21,9 +21,9 @@ export {
   ColorModeProvider,
   TitleField,
   Btn,
+  InputForm,
   // FavItem,
   // FavList,
-  // InputForm,
   // Avatar,
   // Modal,
   // ModalContext,
