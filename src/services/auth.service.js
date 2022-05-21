@@ -32,10 +32,20 @@ export const validateTokenService = (token) => {
   };
 };
 
-export const loginGoogleService = (profileObj) => {
+export const recoverPasswordService = (username) => {
   const controller = loadAbort();
   return {
-    call: axiosHTTPclient.post(ENDPOINTS.LOGIN_GOOGLE, profileObj, {
+    call: axiosHTTPclient.post(`${ENDPOINTS.RECOVER}`, username, {
+      signal: controller.signal,
+    }),
+    controller,
+  };
+};
+
+export const updateUserService = (id, user) => {
+  const controller = loadAbort();
+  return {
+    call: axiosHTTPclient.put(`${ENDPOINTS.USER}/${id}`, user, {
       signal: controller.signal,
     }),
     controller,

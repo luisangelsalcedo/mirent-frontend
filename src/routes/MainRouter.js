@@ -6,7 +6,9 @@ import {
   LoginPage,
   NotfoundPage,
   PropertyPage,
+  RecoverPassword,
   RegisterPage,
+  ReplacePassword,
 } from "../pages";
 import { PublicRoutes as Public } from "./PublicRoutes";
 import { PrivateRoutes as Private } from "./PrivateRoutes";
@@ -36,6 +38,24 @@ export const MainRouter = () => (
       element={
         <Public>
           <LoginPage />
+        </Public>
+      }
+      replace
+    />
+    <Route
+      path="/recover"
+      element={
+        <Public>
+          <RecoverPassword />
+        </Public>
+      }
+      replace
+    />
+    <Route
+      path="/replacepassword/:token"
+      element={
+        <Public>
+          <ReplacePassword />
         </Public>
       }
       replace

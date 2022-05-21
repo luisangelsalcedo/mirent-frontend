@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { Link, useLinkClickHandler } from "react-router-dom";
 import {
   Btn,
@@ -6,15 +6,20 @@ import {
   TitleField,
   ToggleMode,
   InputForm,
+  NotificationContext,
 } from "../../components/designSystem";
 import "./auth-page.scss";
+import { useFetchAndLoad } from "../../hooks";
+import { loginService, validateTokenService } from "../../services";
+import { payloadAuthAdapter, tokenAdapter } from "../../adapters";
 
 export const LoginPage = () => {
   const emailRef = useRef();
   const passRef = useRef();
   const btnRef = useRef();
-
   const toHome = useLinkClickHandler("/");
+  const { loading, callEndpoint } = useFetchAndLoad();
+  const { openNotice } = useContext(NotificationContext);
 
   const handleChange = () => {
     emailRef.current.value = emailRef.current.value.trim();
@@ -28,11 +33,23 @@ export const LoginPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const user = {
+    const userlogin = {
       email: emailRef.current.value.trim().toLowerCase(),
       password: passRef.current.value,
     };
-    console.log(user);
+    const { success, message, token } = tokenAdapter(
+      await callEndpoint(loginService(userlogin))
+    );
+    console.log(success, message, token);
+
+    if (success) openNotice(message);
+
+    const { payload } = payloadAuthAdapter(
+      await callEndpoint(validateTokenService(token))
+    );
+
+    // openNotice("message");
+    console.log(payload);
   };
 
   useEffect(() => {
@@ -49,13 +66,14 @@ export const LoginPage = () => {
         <form onSubmit={handleSubmit}>
           <InputForm
             ref={emailRef}
-            placeholder="Ingresa un Correo Electrónico"
+            placeholder="Correo Electrónico"
             fa="envelope"
             onChange={handleChange}
           />
           <InputForm
             ref={passRef}
-            placeholder="Ingresa una Contraseña"
+            type="password"
+            placeholder="Contraseña"
             fa="lock"
             onChange={handleChange}
           />
@@ -69,7 +87,10 @@ export const LoginPage = () => {
           />
         </form>
         <div className="opcion-foot">
-          ¿No tienes cuenta? <Link to="/register">Regístrate</Link>
+          <Link to="/recover">¿Ha olvidado su contraseña?</Link>
+        </div>
+        <div className="opcion-foot">
+          ¿Aún no tienes un cuenta? <Link to="/register">Únete</Link>
         </div>
       </div>
     </div>

@@ -1,12 +1,24 @@
 import ReactDOM from "react-dom";
 import { useEffect, useRef } from "react";
+import { config } from "../../../config";
 import "./scss/notificaction.scss";
 
+/**
+ * ## Notificaction component
+ * * Custom Notificaction component
+ * **Use:**
+ * ```
+ * <Notificaction handleClose={Function} type={String} fa={String} res={Promise resolve} time={Number}/>
+ * ```
+ * @param {object} props
+ * @returns {jsx} JSX
+ */
 export const Notificaction = ({
   children,
   handleClose,
   fa,
   type,
+  time,
   res = null,
 }) => {
   const portalNode = document.createElement("div");
@@ -19,7 +31,7 @@ export const Notificaction = ({
       timer.current = setTimeout(() => {
         handleClose();
         res();
-      }, 3000);
+      }, time || config.notification.duration);
     }
 
     return () => {

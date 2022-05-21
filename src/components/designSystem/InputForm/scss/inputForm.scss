@@ -36,6 +36,11 @@ $input-form-placeholder-dark: #4f717a;
       appearance: inherit !important;
       color: inherit !important;
     }
+
+    &:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
   }
 
   i {

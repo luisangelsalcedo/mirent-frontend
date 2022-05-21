@@ -1,10 +1,11 @@
 import axios from "axios";
+import { config as configuring } from "../config";
 
 /**
  * * AXIOS INSTANCE
  */
 export const axiosHTTPclient = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
+  baseURL: configuring.api.url,
   // timeout: 1000,
   headers: { "Content-Type": "application/json" },
 });
@@ -40,6 +41,8 @@ axiosHTTPclient.interceptors.response.use(
         window.location.href = "/";
       }, 2000);
     }
+    // debug provicional
+    console.log("error", error.response.data);
 
     return Promise.reject(error);
   }

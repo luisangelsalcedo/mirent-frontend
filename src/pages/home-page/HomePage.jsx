@@ -20,7 +20,7 @@ export const HomePage = () => {
             <ToggleMode />
             <Logo />
             <TitleField
-              text="Inicia sessión y manten al día tus pagos con mirent"
+              text="Inicia sesión y manten al día tus pagos con mirent"
               center
               size={1.2}
             />

@@ -4,6 +4,16 @@ import "./scss/modal.scss";
 import { Btn } from "../Btn/Btn";
 import { ReduxStore } from "../../../redux";
 
+/**
+ * ## Modal component
+ * * Custom Modal component
+ * **Use:**
+ * ```
+ * <Modal show={Boolean} close={Function}>
+ * ```
+ * @param {object} props
+ * @returns {jsx} JSX
+ */
 export const Modal = ({ children, show, close }) => {
   const portalNode = document.createElement("div");
 

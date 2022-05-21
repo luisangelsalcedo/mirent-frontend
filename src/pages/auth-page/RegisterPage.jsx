@@ -7,7 +7,10 @@ import {
   ToggleMode,
   InputForm,
 } from "../../components/designSystem";
+import { useFetchAndLoad } from "../../hooks";
+import { registerUserService } from "../../services";
 import "./auth-page.scss";
+import { userAdapter } from "../../adapters";
 
 export const RegisterPage = () => {
   const nameRef = useRef();
@@ -16,6 +19,7 @@ export const RegisterPage = () => {
   const btnRef = useRef();
 
   const toHome = useLinkClickHandler("/");
+  const { loading, callEndpoint } = useFetchAndLoad();
 
   const handleChange = () => {
     emailRef.current.value = emailRef.current.value.trim();
@@ -30,12 +34,16 @@ export const RegisterPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const user = {
+    const newUser = {
       name: nameRef.current.value,
       email: emailRef.current.value.trim().toLowerCase(),
       password: passRef.current.value,
     };
-    console.log(user);
+    const { success, message, user } = userAdapter(
+      await callEndpoint(registerUserService(newUser))
+    );
+
+    console.log(success, message, user);
   };
 
   useEffect(() => {
@@ -78,7 +86,7 @@ export const RegisterPage = () => {
           />
         </form>
         <div className="opcion-foot">
-          ¿Ya tienes cuenta? <Link to="/login">Inicia sesión</Link>
+          ¿Ya tienes un cuenta? <Link to="/login">Inicia sesión</Link>
         </div>
       </div>
     </div>

@@ -7,23 +7,25 @@ export const NotificationContext = createContext({});
 export const NotificationProvider = ({ children }) => {
   const [notification, setNotification] = useState({});
 
-  const openAlert = (text) =>
+  const openAlert = (text, time) =>
     new Promise((resolve, reject) => {
       setNotification({
         message: text,
         type: "danger",
         fa: "exclamation-circle",
         res: resolve,
+        time,
       });
     });
 
-  const openNotice = (text) =>
+  const openNotice = (text, time) =>
     new Promise((resolve, reject) => {
       setNotification({
         message: text,
         type: "primary",
         fa: "bell",
         res: resolve,
+        time,
       });
     });
 
@@ -61,6 +63,7 @@ export const NotificationProvider = ({ children }) => {
         type={notification.type}
         fa={notification.fa}
         res={notification.res}
+        time={notification.time}
       >
         {notification.message}
       </Notificaction>
