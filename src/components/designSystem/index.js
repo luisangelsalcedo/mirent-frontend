@@ -10,9 +10,9 @@ import {
 } from "./Notificaction";
 import { Avatar } from "./Avatar";
 import { Modal, ModalContext, ModalProvider } from "./Modal";
+import { Preloading, LoadingMain } from "./Preloading";
 // import { FavItem } from "./FavItem";
 // import { FavList } from "./FavList";
-// import { Preloading, LoadingMain } from "./Preloading";
 
 export {
   Logo,
@@ -29,8 +29,8 @@ export {
   Modal,
   ModalContext,
   ModalProvider,
+  LoadingMain,
+  Preloading,
   // FavItem,
   // FavList,
-  // Preloading,
-  // LoadingMain,
 };

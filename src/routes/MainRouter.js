@@ -4,16 +4,17 @@ import {
   DashboardPage,
   HomePage,
   LoginPage,
-  NotfoundPage,
-  PropertyPage,
-  RecoverPassword,
   RegisterPage,
+  RecoverPassword,
   ReplacePassword,
+  PerfilPage,
+  PropertyPage,
+  NotfoundPage,
 } from "../pages";
 import { PublicRoutes as Public } from "./PublicRoutes";
 import { PrivateRoutes as Private } from "./PrivateRoutes";
 
-export const MainRouter = () => (
+const MainRouter = () => (
   <Routes>
     <Route
       path="/"
@@ -70,10 +71,25 @@ export const MainRouter = () => (
       replace
     >
       <Route
+        path="user/:id"
+        element={
+          <Private>
+            <PerfilPage />
+          </Private>
+        }
+        replace
+      />
+      <Route
         path="property/:id"
         element={
           <Private>
-            <PropertyPage />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            property
           </Private>
         }
         replace
@@ -82,3 +98,5 @@ export const MainRouter = () => (
     <Route path="*" element={<NotfoundPage />} />
   </Routes>
 );
+
+export default MainRouter;

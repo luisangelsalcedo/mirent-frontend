@@ -1,4 +1,4 @@
-import { ReactComponent as Isotipo } from "../../../assets/svg/isotipo.svg";
+import { ReactComponent as Isotipo } from "./svg/isotipo.svg";
 import "./scss/preloading.scss";
 
 export const LoadingMain = () => (

@@ -7,6 +7,7 @@ import {
   ToggleMode,
   InputForm,
   NotificationContext,
+  Preloading,
 } from "../../components/designSystem";
 import "./auth-page.scss";
 import { useFetchAndLoad } from "../../hooks";
@@ -55,7 +56,10 @@ export const RecoverPassword = () => {
       <div className="box">
         <Logo onClick={toHome} />
         {loading ? (
-          "enviando correo..."
+          <>
+            <Preloading />
+            enviando correo...
+          </>
         ) : (
           <>
             <TitleField text="Restablecer la contraseña" center size={1.5} />

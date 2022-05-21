@@ -19,10 +19,13 @@ main {
 }
 
 a {
+  color: $color-blue;
   text-decoration: none;
+  transition: all 0.3s ease;
   &:hover {
     text-decoration: underline;
     text-underline-offset: 3px;
+    opacity: 0.7;
   }
 }
 
@@ -37,57 +40,40 @@ a {
   text-align: center;
 }
 
-// .logo {
-//   display: flex;
-//   justify-content: center;
-//   margin: 1em 0 1rem 0;
-//   max-width: 200px;
-// }
+.bg-red {
+  background: $color-main;
+  color: #fff;
 
-// a {
-//   color: $color-blue;
-//   font-weight: bold;
-//   text-decoration: none;
-//   transition: all 0.3s ease;
-//   &:hover {
-//     opacity: 0.7;
-//   }
-// }
+  .btn {
+    color: #fff;
+    border-color: #fff;
+    i {
+      color: #fff;
+    }
+  }
+}
 
-// .bg-red {
-//   background: $color-main;
-//   color: #fff;
+.dark {
+  color: #fff;
+  background: $color-dark;
+  transition: all 0.3s ease;
 
-//   .btn {
-//     color: #fff !important;
-//     border-color: #fff !important;
-//     i {
-//       color: #fff;
-//     }
-//   }
-// }
+  .bg-red {
+    .btn {
+      border-color: $color-main;
+    }
+  }
+}
 
-// .dark {
-//   color: #fff;
-//   background: $color-dark;
-//   transition: all 0.3s ease;
+.grey {
+  background: $color-grey-1;
+}
 
-//   .bg-red {
-//     .btn {
-//       border-color: $color-main !important;
-//     }
-//   }
-// }
-
-// .grey {
-//   background: $color-grey-1;
-// }
-
-// .ds {
-//   & .light,
-//   & .dark,
-//   & .red,
-//   & .grey {
-//     padding: 1.5rem;
-//   }
-// }
+.ds {
+  & .light,
+  & .dark,
+  & .red,
+  & .grey {
+    padding: 1.5rem;
+  }
+}
