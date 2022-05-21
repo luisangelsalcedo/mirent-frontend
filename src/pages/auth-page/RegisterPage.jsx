@@ -1,24 +1,27 @@
-import React, { useEffect, useRef } from "react";
-import { Link, useLinkClickHandler } from "react-router-dom";
+import React, { useContext, useEffect, useRef } from "react";
+import { Link, useLinkClickHandler, useNavigate } from "react-router-dom";
 import {
   Btn,
   Logo,
   TitleField,
   ToggleMode,
   InputForm,
+  NotificationContext,
 } from "../../components/designSystem";
 import { useFetchAndLoad } from "../../hooks";
 import { registerUserService } from "../../services";
-import "./auth-page.scss";
 import { userAdapter } from "../../adapters";
+import "./auth-page.scss";
 
 export const RegisterPage = () => {
   const nameRef = useRef();
   const emailRef = useRef();
   const passRef = useRef();
   const btnRef = useRef();
+  const navigate = useNavigate();
 
   const toHome = useLinkClickHandler("/");
+  const { openNotice } = useContext(NotificationContext);
   const { loading, callEndpoint } = useFetchAndLoad();
 
   const handleChange = () => {
@@ -42,8 +45,8 @@ export const RegisterPage = () => {
     const { success, message, user } = userAdapter(
       await callEndpoint(registerUserService(newUser))
     );
-
-    console.log(success, message, user);
+    navigate("/login", { replace: true });
+    await openNotice(`sign in with ${user.email}`);
   };
 
   useEffect(() => {
