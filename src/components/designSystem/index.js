@@ -8,10 +8,10 @@ import {
   NotificationProvider,
   NotificationContext,
 } from "./Notificaction";
+import { Avatar } from "./Avatar";
+import { Modal, ModalContext, ModalProvider } from "./Modal";
 // import { FavItem } from "./FavItem";
 // import { FavList } from "./FavList";
-// import { Avatar } from "./Avatar";
-// import { Modal, ModalContext, ModalProvider } from "./Modal";
 // import { Preloading, LoadingMain } from "./Preloading";
 
 export {
@@ -25,12 +25,12 @@ export {
   Notificaction,
   NotificationProvider,
   NotificationContext,
+  Avatar,
+  Modal,
+  ModalContext,
+  ModalProvider,
   // FavItem,
   // FavList,
-  // Avatar,
-  // Modal,
-  // ModalContext,
-  // ModalProvider,
   // Preloading,
   // LoadingMain,
 };

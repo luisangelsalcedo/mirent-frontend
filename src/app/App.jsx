@@ -2,6 +2,7 @@ import { BrowserRouter } from "react-router-dom";
 import { MainRouter } from "../routes";
 import {
   ColorModeProvider,
+  ModalProvider,
   NotificationProvider,
 } from "../components/designSystem";
 import "../assets/scss/main.scss";
@@ -11,11 +12,13 @@ import { ReduxStoreProvider } from "../redux";
 export const App = () => (
   <ColorModeProvider>
     <NotificationProvider>
-      <ReduxStoreProvider>
-        <BrowserRouter>
-          <MainRouter />
-        </BrowserRouter>
-      </ReduxStoreProvider>
+      <ModalProvider>
+        <ReduxStoreProvider>
+          <BrowserRouter>
+            <MainRouter />
+          </BrowserRouter>
+        </ReduxStoreProvider>
+      </ModalProvider>
     </NotificationProvider>
   </ColorModeProvider>
 );

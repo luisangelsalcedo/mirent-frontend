@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import ReactDOM from "react-dom";
 import "./scss/modal.scss";
 import { Btn } from "../Btn/Btn";
-import { ReduxStore } from "../../../redux";
+import { ReduxStoreProvider } from "../../../redux";
 
 /**
  * ## Modal component
@@ -25,7 +25,7 @@ export const Modal = ({ children, show, close }) => {
   }, [portalNode]);
 
   return ReactDOM.createPortal(
-    <ReduxStore>
+    <ReduxStoreProvider>
       <div className={`modal ${show ? "show" : ""}`}>
         <Btn onClick={close} />
         <div className="modal-content">
@@ -33,7 +33,7 @@ export const Modal = ({ children, show, close }) => {
           <div className="form-content">{children}</div>
         </div>
       </div>
-    </ReduxStore>,
+    </ReduxStoreProvider>,
     portalNode
   );
 };
