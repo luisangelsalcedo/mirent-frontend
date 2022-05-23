@@ -1,3 +1,17 @@
-import { login, logout, register, exit } from "./auth.actions";
+import {
+  registerAction,
+  loginAction,
+  logoutAction,
+  exit,
+  getUserAction,
+  updateUserAction,
+} from "./auth.actions";
 
-export { login, register, logout, exit };
+export {
+  registerAction,
+  loginAction,
+  logoutAction,
+  exit,
+  getUserAction,
+  updateUserAction,
+};

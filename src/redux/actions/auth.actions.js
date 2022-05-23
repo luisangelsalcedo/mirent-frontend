@@ -2,21 +2,31 @@ import { TYPES } from "../../constants";
 // import { cleanFavs } from "./favs.actions";
 
 // actions
-export const login = (user) => ({
+export const loginAction = (payload) => ({
   type: TYPES.LOGIN,
-  payload: user,
+  payload,
 });
 
-export const register = (user) => ({
+export const registerAction = (user) => ({
   type: TYPES.REGISTER,
   payload: user,
 });
 
-export const logout = () => ({
+export const logoutAction = () => ({
   type: TYPES.LOGOUT,
 });
 
+export const getUserAction = (user) => ({
+  type: TYPES.GETUSER,
+  payload: user,
+});
+
+export const updateUserAction = (user) => ({
+  type: TYPES.UPDATEUSER,
+  payload: user,
+});
+
 export const exit = () => async (dispatch) => {
-  dispatch(logout());
+  dispatch(logoutAction());
   //   dispatch(cleanFavs());
 };

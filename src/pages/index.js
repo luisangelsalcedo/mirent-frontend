@@ -6,7 +6,8 @@ import { ReplacePassword } from "./auth-page/ReplacePassword";
 import { DashboardPage } from "./dashboard-page/DashboardPage";
 import { PropertyPage } from "./property-page/PropertyPage";
 import { NotfoundPage } from "./notfound-page/NotfoundPage";
-import { PerfilPage } from "./perfil-page/PerfilPage";
+import { ProfilePage } from "./profile-page/ProfilePage";
+import { ProfileEdit } from "./profile-page/ProfileEdit";
 
 export {
   HomePage,
@@ -15,7 +16,8 @@ export {
   RecoverPassword,
   ReplacePassword,
   DashboardPage,
-  PerfilPage,
+  ProfilePage,
+  ProfileEdit,
   PropertyPage,
   NotfoundPage,
 };

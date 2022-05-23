@@ -7,6 +7,12 @@
   color: $color-dark;
   font-family: $inika;
   font-weight: bold;
+  display: flex;
+  align-items: center;
+
+  .fa {
+    margin-right: 0.8rem;
+  }
 }
 
 // DARK

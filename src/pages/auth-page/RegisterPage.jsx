@@ -18,6 +18,7 @@ export const RegisterPage = () => {
   const emailRef = useRef();
   const passRef = useRef();
   const btnRef = useRef();
+  const goToLoginPage = "/login";
   const navigate = useNavigate();
 
   const toHome = useLinkClickHandler("/");
@@ -42,10 +43,12 @@ export const RegisterPage = () => {
       email: emailRef.current.value.trim().toLowerCase(),
       password: passRef.current.value,
     };
-    const { success, message, user } = userAdapter(
+    const { user } = userAdapter(
       await callEndpoint(registerUserService(newUser))
     );
-    navigate("/login", { replace: true });
+    if (!user) return;
+
+    navigate(goToLoginPage, { replace: true });
     await openNotice(`sign in with ${user.email}`);
   };
 
@@ -82,10 +85,11 @@ export const RegisterPage = () => {
           <Btn
             ref={btnRef}
             type="submit"
-            label="Registrate"
+            fa={loading ? "circle-o-notch fa-spin fa-fw" : ""}
+            label={loading ? "Cargando..." : "Registrate"}
             btn="main"
             className="btn-block"
-            disabled
+            disabled={loading}
           />
         </form>
         <div className="opcion-foot">

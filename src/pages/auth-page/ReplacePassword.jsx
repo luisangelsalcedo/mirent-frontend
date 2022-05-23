@@ -11,7 +11,7 @@ import {
 import "./auth-page.scss";
 import { useFetchAndLoad } from "../../hooks";
 import { updateUserService, validateTokenService } from "../../services";
-import { payloadAuthAdapter, tokenAdapter, userAdapter } from "../../adapters";
+import { payloadAuthAdapter, userAdapter } from "../../adapters";
 
 export const ReplacePassword = () => {
   const copyRef = useRef();
@@ -23,6 +23,7 @@ export const ReplacePassword = () => {
   const { loading, callEndpoint } = useFetchAndLoad();
   const { openAlert, openNotice } = useContext(NotificationContext);
   const { token } = useParams();
+  const goToLoginPage = "/login";
   const navigate = useNavigate();
 
   const handleChange = () => {
@@ -53,10 +54,11 @@ export const ReplacePassword = () => {
     const { message, user } = userAdapter(
       await callEndpoint(updateUserService(id, updated))
     );
+    if (!user) return;
 
     await openNotice(message);
     await openNotice("Sign back in");
-    navigate("/login", { replace: true });
+    navigate(goToLoginPage, { replace: true });
   };
 
   const handleValidate = async () => {
@@ -72,7 +74,7 @@ export const ReplacePassword = () => {
   };
 
   useEffect(() => {
-    handleValidate();
+    if (!validate) handleValidate();
   }, []);
 
   return (
@@ -80,9 +82,11 @@ export const ReplacePassword = () => {
       <ToggleMode />
       <div className="box">
         <Logo onClick={toHome} />
-        {validate && (
+        {!validate ? (
+          <TitleField text=" Página caducáda" center fa="ban" fasize={2.5} />
+        ) : (
           <>
-            <TitleField text="Cambio de contraseña" center size={1.5} />
+            <TitleField text="Cambio de contraseña" center />
             <form onSubmit={handleSubmit}>
               <InputForm
                 ref={passRef}
@@ -102,21 +106,15 @@ export const ReplacePassword = () => {
               <Btn
                 ref={btnRef}
                 type="submit"
-                label="Cambiar contraseña"
+                fa={loading ? "circle-o-notch fa-spin fa-fw" : ""}
+                label={loading ? "Enviando cambios..." : "Cambiar contraseña"}
                 btn="main"
                 className="btn-block"
-                disabled
+                disabled={loading}
               />
             </form>
           </>
         )}
-
-        {/* <div className="opcion-foot">
-          <Link to="/recover">¿Ha olvidado su contraseña?</Link>
-        </div>
-        <div className="opcion-foot">
-          ¿Aún no tienes un cuenta? <Link to="/register">Únete</Link>
-        </div> */}
       </div>
     </div>
   );

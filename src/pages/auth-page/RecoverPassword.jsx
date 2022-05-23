@@ -21,6 +21,7 @@ export const RecoverPassword = () => {
   const { loading, callEndpoint } = useFetchAndLoad();
   const { openNotice } = useContext(NotificationContext);
   const navigate = useNavigate();
+  const goToHomepage = "/";
 
   const handleChange = () => {
     emailRef.current.value = emailRef.current.value.trim();
@@ -42,7 +43,7 @@ export const RecoverPassword = () => {
     if (success) {
       await openNotice("link valid for 5 minutes", 2000);
       await openNotice("check your inbox for the reset link");
-      navigate("/", { replace: true });
+      navigate(goToHomepage, { replace: true });
     }
   };
 
@@ -58,11 +59,11 @@ export const RecoverPassword = () => {
         {loading ? (
           <>
             <Preloading />
-            enviando correo...
+            <TitleField text="enviando correo..." center fa="envelope" />
           </>
         ) : (
           <>
-            <TitleField text="Restablecer la contraseña" center size={1.5} />
+            <TitleField text="Restablecer la contraseña" center />
             <p className="center">
               Ingrese la dirección de correo electrónico que usa para iniciar
               sesión.
@@ -79,10 +80,11 @@ export const RecoverPassword = () => {
               <Btn
                 ref={btnRef}
                 type="submit"
+                fa={loading ? "circle-o-notch fa-spin fa-fw" : ""}
                 label="Obtener el enlace de restablecimiento"
                 btn="main"
                 className="btn-block"
-                disabled
+                disabled={loading}
               />
             </form>
           </>

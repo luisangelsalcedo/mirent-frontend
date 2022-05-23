@@ -51,3 +51,13 @@ export const updateUserService = (id, user) => {
     controller,
   };
 };
+
+export const getUserService = (id) => {
+  const controller = loadAbort();
+  return {
+    call: axiosHTTPclient.get(`${ENDPOINTS.USER}/${id}`, {
+      signal: controller.signal,
+    }),
+    controller,
+  };
+};

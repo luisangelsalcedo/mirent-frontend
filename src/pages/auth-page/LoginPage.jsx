@@ -8,12 +8,13 @@ import {
   ToggleMode,
   InputForm,
   NotificationContext,
+  Preloading,
 } from "../../components/designSystem";
 import "./auth-page.scss";
 import { useFetchAndLoad } from "../../hooks";
 import { loginService, validateTokenService } from "../../services";
 import { payloadAuthAdapter, tokenAdapter } from "../../adapters";
-import { login } from "../../redux/actions";
+import { loginAction } from "../../redux/actions";
 
 export const LoginPage = () => {
   const emailRef = useRef();
@@ -40,17 +41,15 @@ export const LoginPage = () => {
       email: emailRef.current.value.trim().toLowerCase(),
       password: passRef.current.value,
     };
-    const { success, message, token } = tokenAdapter(
-      await callEndpoint(loginService(userlogin))
-    );
-
-    if (success) openNotice(message);
+    const { token } = tokenAdapter(await callEndpoint(loginService(userlogin)));
+    if (!token) return;
 
     const { payload } = payloadAuthAdapter(
       await callEndpoint(validateTokenService(token))
     );
+    if (!payload) return;
 
-    dispatch(login({ token, ...payload }));
+    dispatch(loginAction({ ...payload, token }));
     await openNotice(`Welcome ${payload.name}`);
   };
 
@@ -82,10 +81,11 @@ export const LoginPage = () => {
           <Btn
             ref={btnRef}
             type="submit"
-            label="Inicia sesión"
+            fa={loading ? "circle-o-notch fa-spin fa-fw" : ""}
+            label={loading ? "Cargando..." : "Inicia sesión"}
             btn="main"
             className="btn-block"
-            disabled
+            disabled={loading}
           />
         </form>
         <div className="opcion-foot">

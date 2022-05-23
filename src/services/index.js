@@ -4,6 +4,7 @@ import {
   validateTokenService,
   recoverPasswordService,
   updateUserService,
+  getUserService,
 } from "./auth.service";
 
 export {
@@ -12,4 +13,5 @@ export {
   validateTokenService,
   recoverPasswordService,
   updateUserService,
+  getUserService,
 };

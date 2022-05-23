@@ -48,7 +48,7 @@ $btn-outline-border-dark: $color-main;
   }
 
   &-outline {
-    color: $btn-outline-text;
+    color: $color-dark;
     border: solid 0.1rem $btn-outline-border;
   }
 
@@ -87,13 +87,20 @@ $btn-outline-border-dark: $color-main;
   }
 
   &-circle {
-    background: #fff;
+    background: $color-grey-0;
     padding: 0;
     width: 2.5rem;
     border-radius: 2.5rem;
-    border: solid 0.1rem $btn-outline-border;
+    border: solid 0.15rem $color-main;
     i {
-      color: $color-main;
+      color: $color-dark;
+    }
+
+    &:hover {
+      opacity: 1 !important;
+      i {
+        color: $color-black;
+      }
     }
   }
 
@@ -151,6 +158,18 @@ $btn-outline-border-dark: $color-main;
     &-main {
       color: $color-black;
       background-color: $color-main;
+    }
+
+    &-circle {
+      background: $color-main;
+      i {
+        color: $color-dark;
+      }
+      &:hover {
+        i {
+          color: $color-black;
+        }
+      }
     }
   }
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./scss/btn.scss";
 
 /**
@@ -12,21 +12,20 @@ import "./scss/btn.scss";
  * @returns {jsx} JSX
  */
 export const Btn = React.forwardRef((props, ref) => {
-  const { label, fa, btn, className } = props;
+  const { label, fa, btn, className, ...res } = props;
+  const [classBtn, setClassBtn] = useState("btn");
 
-  const classRef = useRef("btn");
-
-  if (btn) classRef.current += ` btn-${btn}`;
-  if (fa) classRef.current += " btn-icon";
-
-  useEffect(() => {}, []);
+  useEffect(() => {
+    if (btn) setClassBtn((c) => `${c} btn-${btn}`);
+    if (fa) setClassBtn((c) => `${c} btn-icon`);
+  }, []);
 
   return (
     <button
       ref={ref}
       type="button"
-      {...props}
-      className={`${classRef.current} ${className}`}
+      className={`${classBtn} ${className}`}
+      {...res}
     >
       {fa && <i className={`fa fa-${fa}`} aria-hidden="true" />}
       {label && <span>{label}</span>}

@@ -16,7 +16,7 @@ import { exit } from "../../redux/actions";
 // import { CreditsPage } from "../../pages/CreditsPage";
 
 export const DashboardPage = () => {
-  const { name, imageUrl, id: userID } = useSelector((state) => state.auth);
+  const { name, image, id: userID } = useSelector((state) => state.user.auth);
   const dispatch = useDispatch();
   const { id: isOpen } = useParams();
   const { openModal } = useContext(ModalContext);
@@ -40,7 +40,7 @@ export const DashboardPage = () => {
           <div className="container">
             <Logo onClick={handleCredits} />
             <div>
-              <Avatar name={name} img={imageUrl} handler={toUser} />
+              <Avatar name={name} img={image} handler={toUser} />
               <Btn label="Salir" fa="sign-out" onClick={handleLogout} />
             </div>
             <ToggleMode />

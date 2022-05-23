@@ -1,0 +1,64 @@
+@import "../../assets/scss/colors.scss";
+@media (min-width: 0) {
+  .profile {
+    & > .preloading {
+      height: 100vh;
+    }
+    .container {
+      padding: 7rem 0 0 0;
+    }
+    .image {
+      width: 10rem;
+      height: 10rem;
+      margin-bottom: 2rem;
+      position: relative;
+
+      div {
+        width: 100%;
+        height: 100%;
+        background: $color-dark;
+        border-radius: 50%;
+        border: solid 0.2rem $color-main;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 4rem;
+      }
+      .btn {
+        position: absolute;
+        right: 0;
+        bottom: -1rem;
+      }
+    }
+    .content {
+      &-item {
+        border-bottom: solid 1px #ddd;
+        padding: 0.5rem 0;
+        &-label {
+          font-size: 0.8rem;
+          font-weight: bold;
+        }
+        &-info {
+          font-size: 1.1rem;
+        }
+      }
+    }
+    .operations {
+      padding: 1rem 0;
+    }
+  }
+}
+
+@media (min-width: 800px) {
+}
+
+.dark {
+  .perfil {
+    .content {
+      &-item {
+        border-bottom: solid 1px rgba($color: $color-grey-2, $alpha: 0.2);
+      }
+    }
+  }
+}
