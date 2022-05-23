@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import "./profile-page.scss";
 import { useParams, useLinkClickHandler } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { TitleField, Btn, Preloading } from "../../components/designSystem";
@@ -7,6 +6,9 @@ import { useFetchAndLoad } from "../../hooks";
 import { getUserService } from "../../services";
 import { userAdapter } from "../../adapters";
 import { getUserAction } from "../../redux/actions";
+import "./profile-page.scss";
+
+// Import required actions.
 
 export const ProfilePage = () => {
   const { id } = useParams();
@@ -15,17 +17,16 @@ export const ProfilePage = () => {
   const { user } = useSelector((state) => state.user);
   const goToProfileEdit = useLinkClickHandler("edit");
 
-  const handleProfileData = async () => {
+  const handleLoadPerfilData = async () => {
     const { user: userLoad } = userAdapter(
       await callEndpoint(getUserService(id))
     );
-    if (!userLoad) return;
     dispatch(getUserAction(userLoad));
   };
 
   useEffect(() => {
     if (!user) {
-      handleProfileData();
+      handleLoadPerfilData();
     }
   }, []);
 
@@ -36,8 +37,11 @@ export const ProfilePage = () => {
       ) : (
         <div className="container">
           <TitleField text="Perfil" />
+
           <div className="image">
-            <div>L</div>
+            <div>
+              {user?.image.thumb ? <img src={user?.image.thumb} alt="" /> : "L"}
+            </div>
           </div>
 
           <div className="content">

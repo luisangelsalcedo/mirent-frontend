@@ -102,6 +102,12 @@ $btn-outline-border-dark: $color-main;
         color: $color-black;
       }
     }
+    &:disabled {
+      opacity: 1 !important;
+      i {
+        opacity: 0.4;
+      }
+    }
   }
 
   &-icon {
