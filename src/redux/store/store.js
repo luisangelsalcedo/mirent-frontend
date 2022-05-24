@@ -1,10 +1,12 @@
 import { combineReducers, createStore, applyMiddleware } from "redux";
 import { composeWithDevTools } from "@redux-devtools/extension";
 import thunk from "redux-thunk";
-import { userReducer } from "../reducers";
+import { agreementReducer, propertyReducer, userReducer } from "../reducers";
 
 const rootreducer = combineReducers({
   user: userReducer,
+  property: propertyReducer,
+  agreement: agreementReducer,
 });
 const store = createStore(
   rootreducer,

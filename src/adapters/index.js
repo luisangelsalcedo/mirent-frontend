@@ -18,3 +18,10 @@ export const userAdapter = ({ data } = {}) => ({
   error: data?.error,
   message: data?.message,
 });
+
+export const propertyAdapter = ({ data } = {}) => ({
+  property: data?.data,
+  success: data?.success,
+  error: data?.error,
+  message: data?.message,
+});

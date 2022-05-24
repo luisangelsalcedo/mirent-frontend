@@ -11,8 +11,9 @@ import {
 import { Avatar } from "./Avatar";
 import { Modal, ModalContext, ModalProvider } from "./Modal";
 import { Preloading, LoadingMain } from "./Preloading";
-// import { FavItem } from "./FavItem";
-// import { FavList } from "./FavList";
+import { Card } from "./Card";
+import { MenuItem } from "./MenuItem";
+import { Check } from "./Check/Check";
 
 export {
   Logo,
@@ -31,6 +32,7 @@ export {
   ModalProvider,
   LoadingMain,
   Preloading,
-  // FavItem,
-  // FavList,
+  Card,
+  MenuItem,
+  Check,
 };

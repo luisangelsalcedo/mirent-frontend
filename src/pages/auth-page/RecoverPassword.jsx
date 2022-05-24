@@ -84,7 +84,7 @@ export const RecoverPassword = () => {
                 label="Obtener el enlace de restablecimiento"
                 btn="main"
                 className="btn-block"
-                disabled={loading}
+                disabled
               />
             </form>
           </>

@@ -1,8 +1,7 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import "./profile-page.scss";
 import { useParams, useLinkClickHandler, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { AdvancedImage } from "@cloudinary/react";
 import {
   TitleField,
   Btn,
@@ -17,15 +16,9 @@ import {
   loginAction,
   updateUserAction,
 } from "../../redux/actions";
-import { config } from "../../config";
-import { loadAbort } from "../../utils/loadAbortAxios.utils";
 
 export const ProfileEdit = () => {
   const { id } = useParams();
-  const nameRef = useRef();
-  const dniRef = useRef();
-  const phoneRef = useRef();
-  const btnRef = useRef();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const toReturn = `/dashboard/user/${id}`;
@@ -35,6 +28,10 @@ export const ProfileEdit = () => {
   const { loading, callEndpoint } = useFetchAndLoad();
   const { imgCld, imgCldId, thumbCld, showWidget, changed } =
     useCloudinaryWidget();
+  const nameRef = useRef();
+  const dniRef = useRef();
+  const phoneRef = useRef();
+  const btnRef = useRef();
 
   const handleChange = () => {
     let disabled = true;
@@ -44,6 +41,7 @@ export const ProfileEdit = () => {
     if (nameVal.length && dniVal.length && phoneVal.length) disabled = false;
     btnRef.current.disabled = disabled;
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const updated = {
@@ -51,9 +49,8 @@ export const ProfileEdit = () => {
       dni: dniRef.current.value,
       phone: phoneRef.current.value,
     };
-    const { user: userUpdated, message } = userAdapter(
-      await callEndpoint(updateUserService(id, updated))
-    );
+    const result = await callEndpoint(updateUserService(id, updated));
+    const { user: userUpdated, message } = userAdapter(result);
     dispatch(updateUserAction(userUpdated));
     openNotice(message);
 
@@ -65,9 +62,8 @@ export const ProfileEdit = () => {
   };
 
   const handleLoadPerfilData = async () => {
-    const { user: userLoad } = userAdapter(
-      await callEndpoint(getUserService(id))
-    );
+    const result = await callEndpoint(getUserService(id));
+    const { user: userLoad } = userAdapter(result);
     dispatch(getUserAction(userLoad));
   };
 
@@ -75,9 +71,8 @@ export const ProfileEdit = () => {
     const imageUpdate = {
       image: { origin: imgCld, imageId: imgCldId, thumb: thumbCld },
     };
-    const { user: userUpdated } = userAdapter(
-      await callEndpoint(updateUserService(id, imageUpdate))
-    );
+    const result = await callEndpoint(updateUserService(id, imageUpdate));
+    const { user: userUpdated } = userAdapter(result);
     dispatch(loginAction({ image: thumbCld }));
     dispatch(updateUserAction(userUpdated));
     openNotice("image has been updated");
@@ -97,7 +92,11 @@ export const ProfileEdit = () => {
         <TitleField text="Editar Perfil" />
         <div className="image">
           <div>
-            {user?.image.thumb ? <img src={user?.image.thumb} alt="" /> : "L"}
+            {user?.image?.thumb ? (
+              <img src={user?.image?.thumb} alt="" />
+            ) : (
+              user?.name.split("")[0].toUpperCase()
+            )}
           </div>
           <Btn
             fa={changed ? "circle-o-notch fa-spin fa-fw" : "image"}

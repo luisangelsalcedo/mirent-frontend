@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import "./scss/modal.scss";
 import { Btn } from "../Btn/Btn";
 import { ReduxStoreProvider } from "../../../redux";
+import { ColorModeProvider } from "../ToggleMode";
 
 /**
  * ## Modal component
@@ -25,15 +26,24 @@ export const Modal = ({ children, show, close }) => {
   }, [portalNode]);
 
   return ReactDOM.createPortal(
-    <ReduxStoreProvider>
-      <div className={`modal ${show ? "show" : ""}`}>
-        <Btn onClick={close} />
-        <div className="modal-content">
-          <Btn fa="times" btn="circle" onClick={close} className="closeBtn" />
-          <div className="form-content">{children}</div>
-        </div>
-      </div>
-    </ReduxStoreProvider>,
+    <div className="modal-container">
+      <ColorModeProvider>
+        <ReduxStoreProvider>
+          <div className={`modal ${show ? "show" : ""}`}>
+            <Btn onClick={close} />
+            <div className="modal-content">
+              <Btn
+                fa="times"
+                btn="circle"
+                onClick={close}
+                className="closeBtn"
+              />
+              <div className="form-content">{children}</div>
+            </div>
+          </div>
+        </ReduxStoreProvider>
+      </ColorModeProvider>
+    </div>,
     portalNode
   );
 };

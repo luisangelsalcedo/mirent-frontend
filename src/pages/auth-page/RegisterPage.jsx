@@ -78,6 +78,7 @@ export const RegisterPage = () => {
           />
           <InputForm
             ref={passRef}
+            type="password"
             placeholder="Ingresa una Contraseña"
             fa="lock"
             onChange={handleChange}

@@ -1,4 +1,10 @@
 @import "../../scss/colors.scss";
+
+.modal-container {
+  main {
+    min-height: auto;
+  }
+}
 .modal {
   position: fixed;
   z-index: 30;
@@ -27,22 +33,22 @@
 
   &-content {
     position: relative;
-    background: $color-main;
+    background: $color-grey-2;
     border: solid 0.25rem rgba($color: #fff, $alpha: 1);
     padding: 1.8rem;
     border-radius: 1rem;
   }
 
-  .title-field {
-    color: #fff;
-  }
+  // .title-field {
+  //   color: #fff;
+  // }
 
-  .btn {
-    border-color: #fff !important;
-    span {
-      color: #fff !important;
-    }
-  }
+  // .btn {
+  //   border-color: #fff !important;
+  //   span {
+  //     color: #fff !important;
+  //   }
+  // }
 
   .closeBtn {
     position: absolute !important;
@@ -78,6 +84,13 @@
       right: inherit;
 
       margin: auto;
+    }
+  }
+}
+.dark {
+  .modal {
+    &-content {
+      background: $color-dark;
     }
   }
 }

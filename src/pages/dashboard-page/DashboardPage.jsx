@@ -11,9 +11,8 @@ import {
   NotificationContext,
   ModalContext,
 } from "../../components/designSystem";
-// import { FavListPage } from "../../pages/FavListPage";
 import { exit } from "../../redux/actions";
-// import { CreditsPage } from "../../pages/CreditsPage";
+import { PropertyList } from "../property-page/PropertyList";
 
 export const DashboardPage = () => {
   const { name, image, id: userID } = useSelector((state) => state.user.auth);
@@ -22,15 +21,20 @@ export const DashboardPage = () => {
   const { openModal } = useContext(ModalContext);
   const { openNotice } = useContext(NotificationContext);
 
-  const toUser = useLinkClickHandler(`user/${userID}`);
+  const goToProfile = useLinkClickHandler(`user/${userID}`);
+  const goToHome = useLinkClickHandler(`/dashboard`);
 
   const handleLogout = async () => {
     dispatch(exit());
     await openNotice(`See you soon ${name.split(" ")[0]}`);
   };
 
-  const handleCredits = () => {
+  const openCredits = () => {
     openModal("<CreditsPage />");
+  };
+
+  const openNotifications = () => {
+    openModal("<NotificationsPage />");
   };
 
   return (
@@ -38,9 +42,15 @@ export const DashboardPage = () => {
       <div className="dashboard">
         <div className="dashboard-header">
           <div className="container">
-            <Logo onClick={handleCredits} />
             <div>
-              <Avatar name={name} img={image} handler={toUser} />
+              <Logo onClick={openCredits} />
+              <div className="separador" />
+              <Btn fa="home" btn="circle" onClick={goToHome} />
+              <Btn fa="bell-o" btn="circle" onClick={openNotifications} />
+            </div>
+
+            <div>
+              <Avatar name={name} img={image} handler={goToProfile} />
               <Btn label="Salir" fa="sign-out" onClick={handleLogout} />
             </div>
             <ToggleMode />
@@ -48,7 +58,7 @@ export const DashboardPage = () => {
         </div>
         <div className="dashboard-body">
           <div className="dashboard-body-left bg-red">
-            {/* <FavListPage /> */}
+            <PropertyList />
           </div>
           <div className="dashboard-body-right">
             <div className="container">

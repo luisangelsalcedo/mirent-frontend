@@ -7,10 +7,10 @@ import {
   RegisterPage,
   RecoverPassword,
   ReplacePassword,
-  ProfilePage,
-  PropertyPage,
   NotfoundPage,
   ProfileEdit,
+  PropertyDetails,
+  ProfilePage,
 } from "../pages";
 import { PublicRoutes as Public } from "./PublicRoutes";
 import { PrivateRoutes as Private } from "./PrivateRoutes";
@@ -93,13 +93,7 @@ const MainRouter = () => (
         path="property/:id"
         element={
           <Private>
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            property
+            <PropertyDetails />
           </Private>
         }
         replace

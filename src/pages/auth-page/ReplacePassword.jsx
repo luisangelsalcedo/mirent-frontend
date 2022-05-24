@@ -62,9 +62,8 @@ export const ReplacePassword = () => {
   };
 
   const handleValidate = async () => {
-    const { success, message, payload } = payloadAuthAdapter(
-      await callEndpoint(validateTokenService(token))
-    );
+    const result = await callEndpoint(validateTokenService(token));
+    const { success, message, payload } = payloadAuthAdapter(result);
     if (success) {
       setValidate(success);
       setId(payload.id);
@@ -82,11 +81,11 @@ export const ReplacePassword = () => {
       <ToggleMode />
       <div className="box">
         <Logo onClick={toHome} />
-        {!validate ? (
-          <TitleField text=" Página caducáda" center fa="ban" fasize={2.5} />
-        ) : (
+        {validate ? (
           <>
             <TitleField text="Cambio de contraseña" center />
+            <p>Usa mínimo 6 caracteres</p>
+
             <form onSubmit={handleSubmit}>
               <InputForm
                 ref={passRef}
@@ -110,10 +109,12 @@ export const ReplacePassword = () => {
                 label={loading ? "Enviando cambios..." : "Cambiar contraseña"}
                 btn="main"
                 className="btn-block"
-                disabled={loading}
+                disabled
               />
             </form>
           </>
+        ) : (
+          <TitleField text=" Página caducáda" center fa="ban" fasize={2.5} />
         )}
       </div>
     </div>

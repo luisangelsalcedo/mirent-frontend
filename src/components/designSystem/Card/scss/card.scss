@@ -1,0 +1,88 @@
+@import "../../scss/colors.scss";
+
+// COLORS
+$card-bg: #fff;
+$card-text: $color-dark;
+$card-arrow: $color-main;
+
+$card-bg-dark: $color-black;
+$card-text-dark: #fff;
+$card-arrow-dark: $color-main;
+
+// COMPONENT
+.card {
+  min-width: 18rem;
+  transition: all 0.3s ease;
+  background: $card-bg;
+  color: $card-text;
+  padding: 0 1rem;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+
+  summary {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    padding: 2rem 0;
+    opacity: 1;
+    cursor: pointer;
+
+    h4 {
+      font-size: 1rem;
+      margin: 0 0 0.3rem 0;
+      font-weight: bold;
+    }
+
+    &:hover {
+      opacity: 0.7;
+    }
+
+    span {
+      i {
+        color: $card-arrow;
+      }
+    }
+
+    i.fa-chevron-down {
+      transition: all 0.3s ease;
+      transform: rotate(270deg);
+      color: $color-main;
+    }
+  }
+
+  &:not([open]) {
+    background: rgba($color: #ffffff, $alpha: 0.7);
+    summary {
+      i.fa-chevron-down {
+        transform: rotate(90deg);
+        color: $color-dark;
+      }
+    }
+  }
+}
+
+// DARK
+.dark {
+  .card {
+    background: $color-black-plus;
+    color: $card-text-dark;
+    summary {
+      i.fa-chevron-down {
+        color: $color-main;
+      }
+    }
+
+    &:not([open]) {
+      background: $color-black;
+      color: #fff;
+      summary {
+        i.fa-chevron-down {
+          color: #fff;
+        }
+      }
+    }
+  }
+}

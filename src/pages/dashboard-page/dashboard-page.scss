@@ -35,16 +35,21 @@
         }
       }
       .btn {
-        margin: 0 0 0 0.5rem !important;
-        padding: 0 0.5rem !important;
+        margin: 0 0 0 0.5rem;
+        padding: 0 0.5rem;
         span {
           width: 0;
           overflow: hidden;
-          padding: 0 !important;
+          padding: 0;
           transition: all 0.3s ease;
         }
-        .fa {
-          font-size: 1.5rem !important;
+
+        &-circle {
+          width: 2.2rem;
+          height: 2.2rem;
+          i {
+            font-size: 1.2rem !important;
+          }
         }
       }
     }
@@ -81,8 +86,12 @@
           }
 
           .btn {
-            position: fixed !important;
+            position: fixed;
             bottom: 1rem;
+            background: $color-main;
+            i {
+              color: $color-dark;
+            }
             span {
               display: none;
             }
@@ -95,7 +104,7 @@
       }
     }
     .toggle-mode {
-      position: absolute !important;
+      position: absolute;
       z-index: 20;
       right: 2rem;
       top: 5rem;
@@ -135,11 +144,11 @@
         span {
           width: initial;
           overflow: hidden;
-          padding: 0 0.3rem !important;
+          padding: 0 0.3rem;
           transition: all 0.3s ease;
         }
         .fa {
-          font-size: 1.5rem !important;
+          font-size: 1.5rem;
         }
       }
     }
@@ -152,8 +161,12 @@
         width: 100%;
         .title {
           .btn {
-            position: relative !important;
+            position: relative;
             bottom: 0.3rem;
+            background: transparent;
+            i {
+              color: #fff;
+            }
             span {
               display: block;
             }

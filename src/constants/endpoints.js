@@ -4,4 +4,6 @@ export const ENDPOINTS = {
   VALIDATE: "/auth/local/validate",
   RECOVER: "/auth/local/recover",
   USER: "/api/user",
+  PROPERTY: "/api/property",
+  AGREEMENT: "/api/agreement",
 };

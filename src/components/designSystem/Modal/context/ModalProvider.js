@@ -1,11 +1,15 @@
 import { createContext, useMemo, useState } from "react";
 import { Modal } from "../Modal";
 
+/**
+ * ```
+ * const {openModal,closeModal} = useContext(ModalContext)
+ *```
+ */
 export const ModalContext = createContext({});
 
 export const ModalProvider = ({ children }) => {
   const [modal, setModal] = useState({ show: false, component: "" });
-
   const openModal = (view) => {
     setModal({ show: true, component: view });
   };

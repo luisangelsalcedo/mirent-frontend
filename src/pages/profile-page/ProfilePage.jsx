@@ -12,15 +12,14 @@ import "./profile-page.scss";
 
 export const ProfilePage = () => {
   const { id } = useParams();
-  const { loading, callEndpoint } = useFetchAndLoad();
-  const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.user);
   const goToProfileEdit = useLinkClickHandler("edit");
+  const { user } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const { loading, callEndpoint } = useFetchAndLoad();
 
   const handleLoadPerfilData = async () => {
-    const { user: userLoad } = userAdapter(
-      await callEndpoint(getUserService(id))
-    );
+    const result = await callEndpoint(getUserService(id));
+    const { user: userLoad } = userAdapter(result);
     dispatch(getUserAction(userLoad));
   };
 
@@ -40,7 +39,11 @@ export const ProfilePage = () => {
 
           <div className="image">
             <div>
-              {user?.image.thumb ? <img src={user?.image.thumb} alt="" /> : "L"}
+              {user?.image.thumb ? (
+                <img src={user?.image.thumb} alt="" />
+              ) : (
+                user?.name.split("")[0].toUpperCase()
+              )}
             </div>
           </div>
 
