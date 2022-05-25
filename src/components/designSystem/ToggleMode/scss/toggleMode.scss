@@ -1,0 +1,92 @@
+@import "../../scss/colors.scss";
+
+// colors
+$toggle-mode-text: $color-dark;
+$toggle-mode-bg: $color-dark;
+$toggle-mode-border: $color-main;
+$toggle-mode-label: $color-main;
+
+// COMPONENT
+.toggle-mode {
+  width: 4.4rem;
+  height: 1.8rem;
+  border-radius: 1.8rem;
+  border: solid 0.1rem $toggle-mode-border;
+  color: $toggle-mode-text;
+  background: #fff;
+  overflow: hidden;
+  position: relative;
+
+  & > div {
+    list-style: none;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+
+    overflow: hidden !important;
+
+    input {
+      display: none;
+    }
+    label {
+      content: "";
+      background: $toggle-mode-label;
+      width: 1.3rem;
+      height: 1.3rem;
+      border-radius: 1.3rem;
+      position: absolute;
+      z-index: 1;
+      margin: 0.3rem;
+      display: flex;
+      align-items: center;
+      transition: all 0.3s ease;
+      transform: translate(-0.1rem);
+      cursor: pointer;
+
+      &::before {
+        content: "Light";
+        font-size: 0.8rem;
+        position: absolute;
+        right: -2rem;
+      }
+      &::after {
+        content: "";
+        background: $toggle-mode-bg;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 100%;
+        transform: translate(1rem, -1rem);
+        transition: all 0.3s ease;
+        opacity: 0;
+      }
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+  }
+
+  &.active {
+    background: $color-dark;
+    & > div {
+      label {
+        background: #fff;
+        transform: translate(2.3rem);
+        &::before {
+          content: "Dark";
+          color: #fff;
+          right: 1.8rem;
+        }
+        &::after {
+          width: 0.9rem;
+          height: 0.9rem;
+          top: -0.1rem;
+          right: -0.1rem;
+          transform: translate(0, 0);
+          opacity: 1;
+        }
+      }
+    }
+  }
+}

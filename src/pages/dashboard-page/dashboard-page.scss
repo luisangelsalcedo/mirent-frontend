@@ -1,0 +1,228 @@
+@import "../../assets/scss/colors.scss";
+@media (min-width: 1px) {
+  .dashboard {
+    &-header {
+      background: #fff;
+      border-bottom: solid 1px rgba($color: $color-grey-2, $alpha: 0.4);
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 20;
+
+      .container {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+
+        & > div {
+          display: flex;
+          align-items: center;
+        }
+      }
+      .logo {
+        width: 8.5rem;
+        margin: 0.3rem 0;
+        height: auto;
+        svg {
+          height: auto;
+        }
+      }
+      .avatar {
+        span {
+          width: 0;
+          overflow: hidden;
+          transition: all 0.3s ease;
+        }
+      }
+      .btn {
+        margin: 0 0 0 0.5rem;
+        padding: 0 0.5rem;
+        span {
+          width: 0;
+          overflow: hidden;
+          padding: 0;
+          transition: all 0.3s ease;
+        }
+
+        &-circle {
+          width: 2.2rem;
+          height: 2.2rem;
+          i {
+            font-size: 1.2rem !important;
+          }
+        }
+      }
+    }
+    &-body {
+      background: $color-grey-1;
+      display: flex;
+
+      & > div {
+        flex-shrink: 0;
+
+        transition: all 0.4s ease;
+        overflow-x: hidden;
+        overflow-y: auto;
+        height: 100vh;
+      }
+
+      &-left {
+        position: relative;
+        width: 100%;
+
+        .title {
+          padding: 0;
+          position: relative;
+
+          width: 100%;
+          z-index: 19;
+
+          display: flex;
+          align-items: center;
+
+          .title-field {
+            color: #fff;
+            margin-right: 2.5rem;
+          }
+
+          .btn {
+            position: fixed;
+            bottom: 1rem;
+            background: $color-main;
+            i {
+              color: $color-dark;
+            }
+            span {
+              display: none;
+            }
+          }
+        }
+      }
+      &-right {
+        background: transparent;
+        width: 0;
+      }
+    }
+    .toggle-mode {
+      position: absolute;
+      z-index: 20;
+      right: 2rem;
+      top: 5rem;
+    }
+  }
+  .active {
+    .dashboard {
+      &-body {
+        &-left {
+          width: 0;
+          .title {
+            .btn {
+              transform: translateX(-20rem);
+            }
+          }
+        }
+        &-right {
+          width: 100%;
+          flex: 1;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 450px) {
+  .dashboard {
+    &-header {
+      .avatar {
+        span {
+          width: initial;
+          overflow: hidden;
+        }
+      }
+
+      .btn {
+        span {
+          width: initial;
+          overflow: hidden;
+          padding: 0 0.3rem;
+          transition: all 0.3s ease;
+        }
+        .fa {
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+}
+@media (min-width: 600px) {
+  .dashboard {
+    &-body {
+      &-left {
+        width: 100%;
+        .title {
+          .btn {
+            position: relative;
+            bottom: 0.3rem;
+            background: transparent;
+            i {
+              color: #fff;
+            }
+            span {
+              display: block;
+            }
+          }
+        }
+      }
+      &-right {
+        width: 0;
+      }
+    }
+  }
+
+  .active {
+    .dashboard {
+      &-body {
+        &-left {
+          width: 350px;
+
+          .title {
+            width: 20rem;
+            .btn {
+              transform: translateX(0);
+              span {
+                display: none;
+              }
+            }
+          }
+        }
+        &-right {
+          width: auto;
+        }
+      }
+    }
+  }
+}
+
+.dark {
+  .dashboard {
+    &-header {
+      background: $color-black;
+    }
+    &-body {
+      background: $color-black;
+
+      &-left {
+        background: $color-dark;
+
+        .title {
+          .title-field {
+            color: #fff;
+          }
+        }
+      }
+      &-right {
+        background: transparent;
+      }
+    }
+  }
+}

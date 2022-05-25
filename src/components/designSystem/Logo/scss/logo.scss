@@ -1,0 +1,21 @@
+.logo {
+  width: 15rem;
+  margin-bottom: 0.5rem;
+  border: 0;
+  outline: none;
+  background: transparent;
+  svg {
+    width: 100%;
+  }
+
+  &[onClick] {
+    background: blue;
+  }
+}
+.dark {
+  .logo {
+    path[fill="#455A64"] {
+      fill: #fff !important;
+    }
+  }
+}

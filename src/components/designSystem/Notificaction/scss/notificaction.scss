@@ -1,0 +1,48 @@
+@import "../../scss/colors.scss";
+
+@media (min-width: 0px) {
+  .notificaction-box {
+    position: fixed;
+    bottom: 2rem;
+
+    transition: all 0.4s ease;
+    z-index: 200;
+    opacity: 0;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+
+    &.active {
+      opacity: 1;
+    }
+
+    & > div {
+      background: #ccc;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      width: 100%;
+      margin: 0 2rem;
+      display: flex;
+      align-items: center;
+
+      &.danger {
+        background: $color-red;
+      }
+
+      &.primary {
+        background: $color-blue;
+      }
+    }
+    i {
+      margin-right: 1rem;
+    }
+  }
+}
+@media (min-width: 600px) {
+  .notificaction-box {
+    & > div {
+      width: 50%;
+    }
+  }
+}

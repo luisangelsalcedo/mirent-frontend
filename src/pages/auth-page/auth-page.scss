@@ -1,0 +1,36 @@
+@import "../../assets/scss/colors.scss";
+@media (min-width: 0) {
+  .auth {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & .box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 20rem;
+
+      form {
+        width: inherit;
+      }
+
+      .logo {
+        width: 12rem;
+      }
+    }
+
+    .toggle-mode {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+    }
+  }
+}
+
+@media (min-width: 800px) {
+}
+
+.dark {
+}

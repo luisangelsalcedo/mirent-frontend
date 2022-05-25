@@ -1,0 +1,78 @@
+@import "../../scss/colors.scss";
+
+// COLORS
+$menu-item-bg: #fff;
+$menu-item-text: $color-dark;
+$menu-item-arrow: $color-main;
+
+// COMPONENT
+.menu-item {
+  transition: all 0.3s ease;
+  background: $menu-item-bg;
+  color: $menu-item-text;
+  padding: 0 1rem;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+
+  summary {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: bold;
+    padding: 1rem 0;
+    opacity: 1;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.7;
+    }
+
+    i.fa-chevron-down {
+      transition: all 0.3s ease;
+    }
+
+    i:not(.fa-chevron-down) {
+      color: $color-main;
+      font-size: 1.4rem;
+      margin-right: 1rem;
+    }
+
+    span {
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  &[open] {
+    padding-bottom: 1rem;
+    summary {
+      i.fa-chevron-down {
+        transform: rotate(180deg);
+        color: $menu-item-arrow;
+      }
+    }
+  }
+
+  .btn {
+    margin-top: 1rem !important;
+    margin-bottom: 0 !important;
+  }
+  .content-item {
+    border: none !important;
+  }
+}
+
+// DARK
+.dark {
+  .menu-item {
+    color: #fff;
+    background: $color-black-plus;
+
+    .input-form {
+      background: $color-black;
+    }
+  }
+}
