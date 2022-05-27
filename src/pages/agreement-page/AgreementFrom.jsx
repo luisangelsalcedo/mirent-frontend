@@ -2,6 +2,7 @@ import React, { useContext, useRef, useState } from "react";
 
 import { useDispatch } from "react-redux";
 import DatePicker from "react-datepicker";
+import { Editor } from "@tinymce/tinymce-react";
 import {
   Btn,
   ModalContext,
@@ -10,6 +11,7 @@ import {
 } from "../../components/designSystem";
 
 import { useFetchAndLoad } from "../../hooks";
+import { config } from "../../config";
 
 export const AgreementForm = () => {
   const { openNotice } = useContext(NotificationContext);
@@ -50,7 +52,6 @@ export const AgreementForm = () => {
         />
 
         <div>Detalles del contrato</div>
-        <textarea name="" id="" cols="30" rows="10" onChange={handleChange} />
 
         <Btn
           ref={btnRef}

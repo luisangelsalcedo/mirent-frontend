@@ -48,6 +48,19 @@
         }
       }
     }
+    .title {
+      margin-bottom: 0;
+      text-transform: capitalize;
+    }
+    .info {
+      margin: 0.5rem 0 1.5rem 0;
+      font-size: 0.8rem;
+      b {
+        text-transform: uppercase;
+        font-weight: 500;
+        color: $color-black-plus;
+      }
+    }
     .operations {
       padding: 1rem 0;
     }
@@ -65,10 +78,15 @@
 }
 
 .dark {
-  .perfil {
+  .property-details {
     .content {
       &-item {
         border-bottom: solid 1px rgba($color: $color-grey-2, $alpha: 0.2);
+      }
+    }
+    .info {
+      b {
+        color: $color-main;
       }
     }
   }

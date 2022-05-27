@@ -57,7 +57,7 @@ export const PropertyForm = () => {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <TitleField text="Crea un nuevo inmueble" size="1.2" center />
+        <TitleField text="Crea un nuevo inmueble" center />
         <InputForm
           ref={nameRef}
           placeholder="¿Comó se llamará?"
@@ -67,7 +67,7 @@ export const PropertyForm = () => {
         />
         <InputForm
           ref={priceRef}
-          placeholder="Precio del aquiler"
+          placeholder="Aquiler mensual"
           fa="money"
           onChange={handleChange}
           required

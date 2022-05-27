@@ -12,4 +12,7 @@ export const config = {
     multiple: false,
     reset: true,
   },
+  tinymce: {
+    key: process.env.REACT_APP_TINY_MCE,
+  },
 };

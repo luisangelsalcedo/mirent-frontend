@@ -5,6 +5,11 @@
   justify-content: center;
   align-items: center;
 
+  &.inline {
+    display: inline-flex;
+    vertical-align: middle;
+    height: auto;
+  }
   i {
     color: inherit;
     font-size: 1.5rem;

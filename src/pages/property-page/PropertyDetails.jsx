@@ -12,13 +12,24 @@ import { getOnePropertyAction } from "../../redux/actions";
 import { PropertySetting } from "./PropertySetting";
 import { AgreementList } from "../agreement-page/AgreementList";
 
+const NoFound = () => {
+  const toReturn = "/dashboard";
+  const goToDashboard = useLinkClickHandler(toReturn);
+  return (
+    <div className="oneElement">
+      <TitleField center fa="times" fasize={5} />
+      <TitleField text=" Esta página no existe" center />
+      <Btn label="Regresar al inicio" btn="main" onClick={goToDashboard} />
+    </div>
+  );
+};
+
 export const PropertyDetails = () => {
   const { id } = useParams();
   const [searchParams] = useSearchParams();
   const position = searchParams.get("pos");
   const toReturn = "/dashboard";
   const navigate = useNavigate();
-  const goToDashboard = useLinkClickHandler(toReturn);
 
   const { list, property } = useSelector((state) => state.property);
   const dispatch = useDispatch();
@@ -32,11 +43,27 @@ export const PropertyDetails = () => {
     if (list.length) handleGetProperty();
   }, [id, list]);
 
+  const info = (
+    <div className="info">
+      {property?.address && (
+        <div>
+          <b>Direccíon:</b> {property?.address}
+        </div>
+      )}
+      {property?.details && (
+        <div>
+          <b>Detalles:</b> {property?.details}
+        </div>
+      )}
+    </div>
+  );
+
   return (
     <div className="property-details">
-      {property ? (
+      {property?._id ? (
         <div className="container">
-          <TitleField text={property?.name} size={2.2} />
+          <TitleField text={property?.name} size={2.2} className="title" />
+          {info}
           <TitleField text="Quiero:" size={1.3} />
 
           <div className="content">
@@ -68,11 +95,7 @@ export const PropertyDetails = () => {
           </div>
         </div>
       ) : (
-        <div className="oneElement">
-          <TitleField center fa="times" fasize={5} />
-          <TitleField text=" Esta página no existe" center />
-          <Btn label="Regresar al inicio" btn="main" onClick={goToDashboard} />
-        </div>
+        <NoFound />
       )}
     </div>
   );

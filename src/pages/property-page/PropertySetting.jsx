@@ -2,7 +2,11 @@ import React, { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useSearchParams } from "react-router-dom";
 import { propertyAdapter } from "../../adapters";
-import { Check, NotificationContext } from "../../components/designSystem";
+import {
+  Check,
+  NotificationContext,
+  Preloading,
+} from "../../components/designSystem";
 import { useFetchAndLoad } from "../../hooks";
 import { updatePropertyAction } from "../../redux/actions";
 import { updatePropertyService } from "../../services";
@@ -34,12 +38,17 @@ export const PropertySetting = () => {
   return (
     <div>
       <div className="content-item">
-        Activar inmueble
+        {property?.status?.available ? "Inmueble Activado" : "Activar inmueble"}
         <Check
           id={id}
           check={property?.status?.available}
           changeMode={handleChangeStatus}
         />
+        {loading && (
+          <>
+            <Preloading className="inline" /> cargando...
+          </>
+        )}
       </div>
       <div className="content-item">
         <PropertyEdit />
