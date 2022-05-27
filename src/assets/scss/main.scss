@@ -85,3 +85,11 @@ a {
   height: 2rem;
   background-color: #fff;
 }
+
+.modal {
+  .delete {
+    b {
+      text-transform: capitalize;
+    }
+  }
+}

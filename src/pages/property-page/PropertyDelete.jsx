@@ -30,14 +30,15 @@ export const PropertyDelete = ({ id }) => {
       window.location.replace(toReturn);
     }
   };
+
   return (
-    <div>
+    <div className="delete">
       <TitleField text="Estas seguro?" fa="exclamation-triangle" />
       <p>
         <b>{property?.name}</b> se eliminará de forma permanente
       </p>
       <Btn
-        label="Eliminar"
+        label="Elimínalo, estoy seguro"
         btn="danger"
         className="btn-block"
         disabled={loading}
