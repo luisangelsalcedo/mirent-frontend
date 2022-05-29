@@ -11,6 +11,7 @@ import "./property-details.scss";
 import { getOnePropertyAction } from "../../redux/actions";
 import { PropertySetting } from "./PropertySetting";
 import { AgreementList } from "../agreement-page/AgreementList";
+import { AgreementOccupant } from "../agreement-page/AgreementOccupant";
 
 const NoFound = () => {
   const toReturn = "/dashboard";
@@ -32,6 +33,7 @@ export const PropertyDetails = () => {
   const navigate = useNavigate();
 
   const { list, property } = useSelector((state) => state.property);
+  const { agreement } = useSelector((state) => state.agreement);
   const dispatch = useDispatch();
 
   const handleGetProperty = () => {
@@ -68,22 +70,37 @@ export const PropertyDetails = () => {
 
           <div className="content">
             <MenuItem fa="home" title="Configurar">
-              <PropertySetting />
+              {!property?.status?.rented ? (
+                <PropertySetting />
+              ) : (
+                <>
+                  No se puede editar los datos del inmmueble cuando se tiene un
+                  contrato vinculado.&nbsp;
+                  <b>
+                    Elimine el contrato para acceder a la pantalla de edición
+                  </b>
+                </>
+              )}
             </MenuItem>
-            {property?.status?.available && (
+
+            {(property?.status?.available || property?.status?.rented) && (
               <>
                 <MenuItem fa="file" title="Contratos">
                   <AgreementList />
                 </MenuItem>
-                <MenuItem fa="user" title="Inquilino">
-                  Enviar invitación
-                  <hr />
-                  Ver información del inquilino
-                  <hr />
-                  Enviar mensaje
-                  <hr />
-                </MenuItem>
+              </>
+            )}
 
+            {property?.status?.rented && (
+              <>
+                <MenuItem fa="user" title="Inquilino">
+                  <AgreementOccupant />
+                </MenuItem>
+              </>
+            )}
+
+            {agreement?.status?.signed && (
+              <>
                 <MenuItem fa="money" title="Pagos">
                   Generar próximo pago
                   <hr />

@@ -116,7 +116,7 @@ export const PropertyEdit = () => {
         )}
         <Btn
           ref={btnRef}
-          label="Eliminar"
+          label="Eliminar inmueble"
           btn="danger"
           className="btn-block"
           disabled={loading}

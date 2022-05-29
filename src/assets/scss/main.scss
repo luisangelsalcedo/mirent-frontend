@@ -11,6 +11,11 @@ main {
   }
 }
 
+hr {
+  border-color: rgba($color: #ccc, $alpha: 0.1);
+  margin-bottom: 1rem;
+}
+
 // // general
 .container {
   padding: 0 1.5rem;
@@ -27,6 +32,13 @@ a {
     text-underline-offset: 3px;
     opacity: 0.7;
   }
+}
+
+.item-label {
+  font-size: 0.8rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  display: block;
 }
 
 .opcion-foot {
@@ -49,18 +61,6 @@ a {
     border-color: #fff;
     i {
       color: #fff;
-    }
-  }
-}
-
-.dark {
-  color: #fff;
-  background: $color-dark;
-  transition: all 0.3s ease;
-
-  .bg-red {
-    .btn {
-      border-color: $color-main;
     }
   }
 }
@@ -90,6 +90,59 @@ a {
   .delete {
     b {
       text-transform: capitalize;
+    }
+  }
+}
+
+.react-datepicker-wrapper {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  background: $color-grey-0;
+  display: flex !important;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  position: relative;
+
+  input {
+    width: 100%;
+    border: 0;
+    outline: none;
+    font-size: 1rem;
+    padding: 0.7rem 0.5rem;
+    background: transparent;
+    color: $color-dark;
+    padding-left: 3rem;
+  }
+  &::before {
+    color: #bbb;
+    font-family: FontAwesome;
+    content: "\f073";
+    position: absolute;
+    zoom: 1;
+    left: 1rem;
+    align-self: center;
+  }
+}
+
+.dark {
+  color: #fff;
+  background: $color-dark;
+  transition: all 0.3s ease;
+
+  .bg-red {
+    .btn {
+      border-color: $color-main;
+    }
+  }
+
+  .react-datepicker-wrapper {
+    background: $color-black;
+    input {
+      color: #fff;
+    }
+    &::before {
+      color: #4f717a;
     }
   }
 }

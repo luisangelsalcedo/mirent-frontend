@@ -25,3 +25,10 @@ export const propertyAdapter = ({ data } = {}) => ({
   error: data?.error,
   message: data?.message,
 });
+
+export const agreementAdapter = ({ data } = {}) => ({
+  agreement: data?.data,
+  success: data?.success,
+  error: data?.error,
+  message: data?.message,
+});

@@ -31,8 +31,10 @@ export const PropertySetting = () => {
     const result = await callEndpoint(updatePropertyService(id, update));
     const { property: updated, message } = propertyAdapter(result);
 
-    dispatch(updatePropertyAction(updated, position));
-    if (updated) openNotice(message);
+    if (updated) {
+      dispatch(updatePropertyAction(updated, position));
+      openNotice(message);
+    }
   };
 
   return (

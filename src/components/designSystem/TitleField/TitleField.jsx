@@ -1,3 +1,4 @@
+import { justify } from "@cloudinary/url-gen/qualifiers/textAlignment";
 import "./scss/titleField.scss";
 
 export const TitleField = ({
@@ -10,7 +11,11 @@ export const TitleField = ({
 }) => (
   <div
     className={`title-field ${className}`}
-    style={{ fontSize: `${size}rem`, textAlign: center ? "center" : "left" }}
+    style={{
+      fontSize: `${size}rem`,
+      textAlign: center ? "center" : "left",
+      justifyContent: center ? "center" : "flex-start",
+    }}
   >
     {fa && (
       <i

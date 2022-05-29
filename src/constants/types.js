@@ -3,12 +3,17 @@ export const TYPES = {
   LOGOUT: "[auth] logout",
   GETUSER: "[profile] get one",
   UPDATEUSER: "[profile] update",
+
   CREATEPROPERTY: "[property] create new",
   GETALLPROPERTY: "[property] get all",
   UPDATEPROPERTY: "[property] update",
   GETONEPROPERTY: "[property] get one",
   DELETEONEPROPERTY: "[property] delete",
+
   CREATEAGREEMENT: "[agreement] create new",
+  GETALLAGREEMENT: "[agreement] get all",
+  UPDATEAGREEMENT: "[agreement] update",
+  DELETEAGREEMENT: "[agreement] delete",
 
   CLEAN: "[all] clean",
 };

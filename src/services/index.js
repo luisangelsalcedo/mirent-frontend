@@ -4,7 +4,10 @@ import {
   validateTokenService,
   recoverPasswordService,
   updateUserService,
+  deleteUserService,
   getUserService,
+  invitationUserService,
+  sendInvitationUserService,
 } from "./auth.service";
 
 import {
@@ -13,7 +16,12 @@ import {
   deletePropertyService,
 } from "./property.service";
 
-import { getAllAgreementByPropertyService } from "./agreement.service";
+import {
+  getAllAgreementByPropertyService,
+  createAgreementService,
+  deleteAgreementService,
+  updateAgreementService,
+} from "./agreement.service";
 
 export {
   loginService,
@@ -21,9 +29,15 @@ export {
   validateTokenService,
   recoverPasswordService,
   updateUserService,
+  deleteUserService,
   getUserService,
   getAllPropertyService,
   updatePropertyService,
   deletePropertyService,
   getAllAgreementByPropertyService,
+  createAgreementService,
+  deleteAgreementService,
+  updateAgreementService,
+  invitationUserService,
+  sendInvitationUserService,
 };

@@ -4,7 +4,7 @@ import "./scss/check.scss";
  * ## Check component
  * **Use:**
  * ```
- * <Check check={Boolean} changeMode={Function}/>
+ * <Check id={String} check={Boolean} changeMode={Function}/>
  * ```
  * @param {object} props
  * @returns {jsx} JSX

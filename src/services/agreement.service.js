@@ -22,3 +22,23 @@ export const createAgreementService = (agreement) => {
     controller,
   };
 };
+
+export const deleteAgreementService = (id) => {
+  const controller = loadAbort();
+  return {
+    call: axiosHTTPclient.delete(`${ENDPOINTS.AGREEMENT}/${id}`, {
+      signal: controller.signal,
+    }),
+    controller,
+  };
+};
+
+export const updateAgreementService = (id, update) => {
+  const controller = loadAbort();
+  return {
+    call: axiosHTTPclient.put(`${ENDPOINTS.AGREEMENT}/${id}`, update, {
+      signal: controller.signal,
+    }),
+    controller,
+  };
+};

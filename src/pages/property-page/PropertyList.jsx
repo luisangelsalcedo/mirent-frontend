@@ -37,7 +37,7 @@ export const PropertyList = () => {
   };
 
   useEffect(() => {
-    handleLoad();
+    if (!list.length) handleLoad();
   }, []);
 
   const viewEmpty = (

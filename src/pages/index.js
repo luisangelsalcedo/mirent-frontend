@@ -11,6 +11,8 @@ import { PropertyForm } from "./property-page/PropertyForm";
 import { PropertyDetails } from "./property-page/PropertyDetails";
 import { NotfoundPage } from "./notfound-page/NotfoundPage";
 import { AgreementList } from "./agreement-page/AgreementList";
+import { AgreementDetails } from "./agreement-page/AgreementDetails";
+import { CreditsPage } from "./credits-page/CreditsPage";
 
 export {
   HomePage,
@@ -26,4 +28,6 @@ export {
   PropertyDetails,
   NotfoundPage,
   AgreementList,
+  AgreementDetails,
+  CreditsPage,
 };
