@@ -94,7 +94,7 @@ export const PropertyDetails = () => {
             {property?.status?.rented && (
               <>
                 <MenuItem fa="user" title="Inquilino">
-                  <AgreementOccupant />
+                  <AgreementOccupant position={position} />
                 </MenuItem>
               </>
             )}
