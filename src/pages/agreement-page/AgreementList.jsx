@@ -20,6 +20,7 @@ import { agreementAdapter } from "../../adapters/index";
 import {
   getAllAgreementAction,
   updateAgreementAction,
+  updatePropertyAction,
 } from "../../redux/actions";
 import { AgreementDelete } from "./AgreementDelete";
 import { AgreementDetails } from "./AgreementDetails";
@@ -66,6 +67,9 @@ export const AgreementList = () => {
     );
     const { agreement: updated } = agreementAdapter(result);
     dispatch(updateAgreementAction(updated));
+    const { property } = updated;
+    property.agreement = updated;
+    dispatch(updatePropertyAction(property, position));
   };
 
   useEffect(() => {

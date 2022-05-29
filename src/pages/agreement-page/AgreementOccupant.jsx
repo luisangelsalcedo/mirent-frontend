@@ -8,7 +8,10 @@ import {
   Avatar,
 } from "../../components/designSystem";
 import { useFetchAndLoad } from "../../hooks";
-import { updateAgreementAction } from "../../redux/actions";
+import {
+  updateAgreementAction,
+  updatePropertyAction,
+} from "../../redux/actions";
 import {
   deleteUserService,
   invitationUserService,
@@ -16,7 +19,7 @@ import {
   updateAgreementService,
 } from "../../services";
 
-export const AgreementOccupant = () => {
+export const AgreementOccupant = ({ position }) => {
   const emailRef = useRef();
   const btnRef = useRef();
   const { loading, callEndpoint } = useFetchAndLoad();
@@ -45,6 +48,9 @@ export const AgreementOccupant = () => {
       );
       const { agreement: agreementUpdated } = agreementAdapter(updated);
       dispatch(updateAgreementAction(agreementUpdated));
+      const { property } = agreementUpdated;
+      property.agreement = agreementUpdated;
+      dispatch(updatePropertyAction(property, position));
       openNotice(message);
     }
   };
@@ -74,6 +80,9 @@ export const AgreementOccupant = () => {
     );
     const { agreement: agreementUpdated } = agreementAdapter(result);
     dispatch(updateAgreementAction(agreementUpdated));
+    const { property } = agreementUpdated;
+    property.agreement = agreementUpdated;
+    dispatch(updatePropertyAction(property, position));
     openNotice("invitation removed");
   };
 

@@ -21,6 +21,7 @@ export const PropertyList = () => {
   const { loading, callEndpoint } = useFetchAndLoad();
   const dispatch = useDispatch();
   const { list } = useSelector((state) => state.property);
+  const { list: arrAgreement } = useSelector((state) => state.agreement);
   const { openNotice } = useContext(NotificationContext);
 
   const handleClick = () => {

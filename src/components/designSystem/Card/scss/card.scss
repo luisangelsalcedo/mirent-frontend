@@ -19,6 +19,16 @@ $card-arrow-dark: $color-main;
   overflow: hidden;
   border-radius: 0.5rem;
   margin-bottom: 0.5rem;
+  position: relative;
+
+  &-status {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-top: solid 1px rgba($color: #fff, $alpha: 0.2);
+    padding: 0.3rem 1rem;
+  }
 
   summary {
     list-style: none;
@@ -50,6 +60,11 @@ $card-arrow-dark: $color-main;
       transition: all 0.3s ease;
       transform: rotate(270deg);
       color: $color-main;
+    }
+    .avatar {
+      .img {
+        margin-left: 0;
+      }
     }
   }
 
