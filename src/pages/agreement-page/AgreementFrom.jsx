@@ -27,7 +27,7 @@ export const AgreementForm = ({ id, position }) => {
   const startDateRef = useRef();
   const endDateRef = useRef();
   const dispatch = useDispatch();
-  
+
   const handleChange = (date) => (ref) => (setState) => {
     ref.current = date;
     setState(date);
