@@ -13,7 +13,12 @@ import {
   getOnePropertyAction,
   deletePropertyAction,
 } from "./property.actions";
-import { createAgreementAction } from "./agreement.actions";
+import {
+  createAgreementAction,
+  getAllAgreementAction,
+  updateAgreementAction,
+  deleteAgreementAction,
+} from "./agreement.actions";
 
 export {
   registerAction,
@@ -28,4 +33,7 @@ export {
   getOnePropertyAction,
   deletePropertyAction,
   createAgreementAction,
+  getAllAgreementAction,
+  updateAgreementAction,
+  deleteAgreementAction,
 };

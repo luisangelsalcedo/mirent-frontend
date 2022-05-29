@@ -11,6 +11,7 @@ import {
   ProfileEdit,
   PropertyDetails,
   ProfilePage,
+  AgreementDetails,
 } from "../pages";
 import { PublicRoutes as Public } from "./PublicRoutes";
 import { PrivateRoutes as Private } from "./PrivateRoutes";
@@ -90,10 +91,19 @@ const MainRouter = () => (
         replace
       />
       <Route
-        path="property/:id"
+        path="property/:id/"
         element={
           <Private>
             <PropertyDetails />
+          </Private>
+        }
+        replace
+      />
+      <Route
+        path="property/:id/agreement/:agreementid/"
+        element={
+          <Private>
+            <AgreementDetails />
           </Private>
         }
         replace

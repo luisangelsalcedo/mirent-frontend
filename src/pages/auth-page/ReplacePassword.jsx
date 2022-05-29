@@ -50,10 +50,9 @@ export const ReplacePassword = () => {
       openAlert("passwords do not match");
       return;
     }
-    const updated = { password: passRef.current.value };
-    const { message, user } = userAdapter(
-      await callEndpoint(updateUserService(id, updated))
-    );
+    const updated = { password: passRef.current.value, active: true };
+    const result = await callEndpoint(updateUserService(id, updated));
+    const { message, user } = userAdapter(result);
     if (!user) return;
 
     await openNotice(message);

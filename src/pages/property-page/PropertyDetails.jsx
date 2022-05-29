@@ -11,6 +11,19 @@ import "./property-details.scss";
 import { getOnePropertyAction } from "../../redux/actions";
 import { PropertySetting } from "./PropertySetting";
 import { AgreementList } from "../agreement-page/AgreementList";
+import { AgreementOccupant } from "../agreement-page/AgreementOccupant";
+
+const NoFound = () => {
+  const toReturn = "/dashboard";
+  const goToDashboard = useLinkClickHandler(toReturn);
+  return (
+    <div className="oneElement">
+      <TitleField center fa="times" fasize={5} />
+      <TitleField text=" Esta página no existe" center />
+      <Btn label="Regresar al inicio" btn="main" onClick={goToDashboard} />
+    </div>
+  );
+};
 
 export const PropertyDetails = () => {
   const { id } = useParams();
@@ -18,9 +31,9 @@ export const PropertyDetails = () => {
   const position = searchParams.get("pos");
   const toReturn = "/dashboard";
   const navigate = useNavigate();
-  const goToDashboard = useLinkClickHandler(toReturn);
 
   const { list, property } = useSelector((state) => state.property);
+  const { agreement } = useSelector((state) => state.agreement);
   const dispatch = useDispatch();
 
   const handleGetProperty = () => {
@@ -32,31 +45,62 @@ export const PropertyDetails = () => {
     if (list.length) handleGetProperty();
   }, [id, list]);
 
+  const info = (
+    <div className="info">
+      {property?.address && (
+        <div>
+          <b>Direccíon:</b> {property?.address}
+        </div>
+      )}
+      {property?.details && (
+        <div>
+          <b>Detalles:</b> {property?.details}
+        </div>
+      )}
+    </div>
+  );
+
   return (
     <div className="property-details">
-      {property ? (
+      {property?._id ? (
         <div className="container">
-          <TitleField text={property?.name} size={2.2} />
+          <TitleField text={property?.name} size={2.2} className="title" />
+          {info}
           <TitleField text="Quiero:" size={1.3} />
 
           <div className="content">
             <MenuItem fa="home" title="Configurar">
-              <PropertySetting />
+              {!property?.status?.rented ? (
+                <PropertySetting />
+              ) : (
+                <>
+                  No se puede editar los datos del inmmueble cuando se tiene un
+                  contrato vinculado.&nbsp;
+                  <b>
+                    Elimine el contrato para acceder a la pantalla de edición
+                  </b>
+                </>
+              )}
             </MenuItem>
-            {property?.status?.available && (
+
+            {(property?.status?.available || property?.status?.rented) && (
               <>
                 <MenuItem fa="file" title="Contratos">
                   <AgreementList />
                 </MenuItem>
-                <MenuItem fa="user" title="Inquilino">
-                  Enviar invitación
-                  <hr />
-                  Ver información del inquilino
-                  <hr />
-                  Enviar mensaje
-                  <hr />
-                </MenuItem>
+              </>
+            )}
 
+            {property?.status?.rented && (
+              <>
+                <MenuItem fa="user" title="Inquilino">
+                  <AgreementOccupant />
+                </MenuItem>
+              </>
+            )}
+
+            {agreement?.status?.signed && (
+              <>
                 <MenuItem fa="money" title="Pagos">
                   Generar próximo pago
                   <hr />
@@ -68,11 +112,7 @@ export const PropertyDetails = () => {
           </div>
         </div>
       ) : (
-        <div className="oneElement">
-          <TitleField center fa="times" fasize={5} />
-          <TitleField text=" Esta página no existe" center />
-          <Btn label="Regresar al inicio" btn="main" onClick={goToDashboard} />
-        </div>
+        <NoFound />
       )}
     </div>
   );

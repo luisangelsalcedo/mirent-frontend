@@ -13,6 +13,7 @@ import {
 } from "../../components/designSystem";
 import { exit } from "../../redux/actions";
 import { PropertyList } from "../property-page/PropertyList";
+import { CreditsPage } from "../credits-page/CreditsPage";
 
 export const DashboardPage = () => {
   const { name, image, id: userID } = useSelector((state) => state.user.auth);
@@ -30,7 +31,7 @@ export const DashboardPage = () => {
   };
 
   const openCredits = () => {
-    openModal("<CreditsPage />");
+    openModal(<CreditsPage />);
   };
 
   const openNotifications = () => {

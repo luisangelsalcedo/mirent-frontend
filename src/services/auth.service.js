@@ -61,3 +61,37 @@ export const getUserService = (id) => {
     controller,
   };
 };
+
+export const invitationUserService = (id, invite) => {
+  const controller = loadAbort();
+  return {
+    call: axiosHTTPclient.post(`${ENDPOINTS.USER}/${id}/invitation`, invite, {
+      signal: controller.signal,
+    }),
+    controller,
+  };
+};
+
+export const deleteUserService = (id) => {
+  const controller = loadAbort();
+  return {
+    call: axiosHTTPclient.delete(`${ENDPOINTS.USER}/${id}`, {
+      signal: controller.signal,
+    }),
+    controller,
+  };
+};
+
+export const sendInvitationUserService = (id, invite) => {
+  const controller = loadAbort();
+  return {
+    call: axiosHTTPclient.post(
+      `${ENDPOINTS.USER}/${id}/sendinvitation`,
+      invite,
+      {
+        signal: controller.signal,
+      }
+    ),
+    controller,
+  };
+};
