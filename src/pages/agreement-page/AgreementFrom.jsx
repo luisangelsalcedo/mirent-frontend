@@ -21,15 +21,13 @@ export const AgreementForm = ({ id, position }) => {
   const { openNotice } = useContext(NotificationContext);
   const { closeModal } = useContext(ModalContext);
   const { loading, callEndpoint } = useFetchAndLoad();
-
   const btnRef = useRef();
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const startDateRef = useRef();
   const endDateRef = useRef();
-
   const dispatch = useDispatch();
-
+  
   const handleChange = (date) => (ref) => (setState) => {
     ref.current = date;
     setState(date);

@@ -42,7 +42,7 @@ axiosHTTPclient.interceptors.response.use(
       }, 2000);
     }
     // debug provicional
-    console.log("error", error.response.data);
+    // console.log("error", error.response.data);
 
     return Promise.reject(error);
   }

@@ -11,7 +11,7 @@
 <img src="https://prettier.io/icon.png"  width='30'/>
 </div>
 
-## [Repositorio](https://github.com/luisangelsalcedo/mirent-frontend) &nbsp;&nbsp;|&nbsp;&nbsp; [UI Design](https://www.figma.com/file/THzVuOpySwNE9E4IcwLQZ7/mirentApp?node-id=0%3A1) &nbsp;&nbsp;|&nbsp;&nbsp; [Deploy]() &nbsp;&nbsp;|&nbsp;&nbsp; [Backend](https://github.com/luisangelsalcedo/mirent-api)
+## [Repositorio](https://github.com/luisangelsalcedo/mirent-frontend) &nbsp;&nbsp;|&nbsp;&nbsp; [UI Design](https://www.figma.com/file/THzVuOpySwNE9E4IcwLQZ7/mirentApp?node-id=0%3A1) &nbsp;&nbsp;|&nbsp;&nbsp; [Deploy](https://mirent-app-luissg.netlify.app) &nbsp;&nbsp;|&nbsp;&nbsp; [Backend](https://github.com/luisangelsalcedo/mirent-api)
 
 <br>
 <img src="./public/screen.png"/>
