@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
-import "moment/locale/es";
+
 import {
   Btn,
   Check,
@@ -13,9 +13,10 @@ import {
 import { useFetchAndLoad } from "../../hooks";
 import {
   getAllAgreementByPropertyService,
+  getPropertyService,
   updateAgreementService,
 } from "../../services";
-import { AgreementForm } from "./AgreementFrom";
+import { AgreementForm } from "./AgreementForm";
 import { agreementAdapter } from "../../adapters/index";
 import {
   getAllAgreementAction,
@@ -25,6 +26,7 @@ import {
 import { AgreementDelete } from "./AgreementDelete";
 import { AgreementDetails } from "./AgreementDetails";
 import { AgreementArchived } from "./AgreementArchived";
+import { AgreementView } from "./AgreementView";
 
 export const AgreementList = () => {
   moment.locale("es");
@@ -60,6 +62,7 @@ export const AgreementList = () => {
   const handleActiveAgreement = async () => {
     const disabled = { status: { disabled: true } };
     const active = { status: { active: true } };
+
     const status = agreement?.status?.active ? disabled : active;
 
     const result = await callEndpoint(
@@ -67,21 +70,10 @@ export const AgreementList = () => {
     );
     const { agreement: updated } = agreementAdapter(result);
     dispatch(updateAgreementAction(updated));
-    const { property } = updated;
-    property.agreement = updated;
-    dispatch(updatePropertyAction(property, position));
   };
 
-  useEffect(() => {
-    handleLoad();
-  }, [id]);
-
-  useEffect(() => {
-    loadDates();
-  }, [agreement]);
-
-  return (
-    <div className="agreements">
+  const agreementName = (
+    <>
       {!agreement?.status?.rented && agreement?._id && (
         <div>
           <TitleField
@@ -92,99 +84,108 @@ export const AgreementList = () => {
           />
         </div>
       )}
+    </>
+  );
 
-      {!agreement?._id ? (
+  const btnNewAgreement = (
+    <>
+      <Btn
+        label="Crear nuevo contrato"
+        btn="main"
+        fa="plus"
+        className="btn-block"
+        onClick={() => openModal(<AgreementForm id={id} position={position} />)}
+      />
+    </>
+  );
+
+  const btnDestroyAgreement = (
+    <>
+      <AgreementDetails id={agreement?._id} />
+      <Btn
+        label="Eliminar contrato"
+        btn="danger"
+        className="btn-block"
+        onClick={() =>
+          openModal(<AgreementDelete id={agreement?._id} position={position} />)
+        }
+      />
+    </>
+  );
+
+  const btnViewAgreement = (
+    <>
+      <Btn
+        label="Ver contenido"
+        fa="eye"
+        btn="primary"
+        className="btn-block"
+        onClick={() => openModal(<AgreementView content={agreement} />)}
+      />
+    </>
+  );
+
+  const btnArchivedAgreement = (
+    <>
+      {agreement?.status?.signed ? (
         <>
+          <hr />
           <Btn
-            label="Crear nuevo contrato"
+            label="Archivar contrato"
+            fa="folder-open-o"
             btn="main"
-            fa="plus"
             className="btn-block"
             onClick={() =>
-              openModal(<AgreementForm id={id} position={position} />)
+              openModal(
+                <AgreementArchived id={agreement?._id} position={position} />
+              )
             }
           />
         </>
       ) : (
+        ""
+      )}
+    </>
+  );
+
+  const checkActive = (
+    <>
+      <hr />
+      {agreement?.status?.active ? "Contrato activado" : "Activar contrato"}
+
+      <Check
+        id={agreement?._id}
+        check={agreement?.status?.active}
+        changeMode={handleActiveAgreement}
+      />
+      {loading && (
         <>
-          {agreement?.status?.disabled ? (
-            <>
-              <AgreementDetails id={agreement?._id} />
-              <Btn
-                label="Eliminar contrato"
-                btn="danger"
-                className="btn-block"
-                onClick={() =>
-                  openModal(
-                    <AgreementDelete id={agreement?._id} position={position} />
-                  )
-                }
-              />
-            </>
-          ) : (
-            <>
-              <Btn
-                label="Ver contenido"
-                fa="eye"
-                btn="primary"
-                className="btn-block"
-              />
-              {!agreement?.occupant?._id ? (
-                <p>
-                  Ahora solo queda invitar a tu inquilino a ser parte de miRent
-                  y firmar el contrato para continuar.
-                </p>
-              ) : (
-                ""
-              )}
-            </>
-          )}
+          <Preloading className="inline" /> cargando...
+        </>
+      )}
+    </>
+  );
 
-          <>
-            {agreement?.details && !agreement?.status?.signed ? (
-              <>
-                <hr />
-                {agreement?.status?.active
-                  ? "Contrato activado"
-                  : "Activar contrato"}
+  useEffect(() => {
+    handleLoad();
+  }, []);
 
-                <Check
-                  id={id}
-                  check={agreement?.status?.active}
-                  changeMode={handleActiveAgreement}
-                />
-                {loading && (
-                  <>
-                    <Preloading className="inline" /> cargando...
-                  </>
-                )}
-              </>
-            ) : (
-              <>
-                {agreement?.status?.signed ? (
-                  <>
-                    <hr />
-                    <Btn
-                      label="Archivar contrato"
-                      fa="folder-open-o"
-                      btn="main"
-                      className="btn-block"
-                      onClick={() =>
-                        openModal(
-                          <AgreementArchived
-                            id={agreement?._id}
-                            position={position}
-                          />
-                        )
-                      }
-                    />
-                  </>
-                ) : (
-                  ""
-                )}
-              </>
-            )}
-          </>
+  useEffect(() => {
+    loadDates();
+  }, [agreement]);
+
+  return (
+    <div className="agreements">
+      {agreementName}
+      {!agreement?._id ? (
+        btnNewAgreement
+      ) : (
+        <>
+          {agreement?.status?.disabled ? btnDestroyAgreement : btnViewAgreement}
+
+          {agreement?.details && !agreement?.status?.signed
+            ? checkActive
+            : btnArchivedAgreement}
         </>
       )}
     </div>

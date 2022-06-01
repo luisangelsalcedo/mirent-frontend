@@ -4,7 +4,7 @@ import "./credits-page.scss";
 
 export const CreditsPage = () => (
   <div className="credits-page">
-    <Avatar img={avatarImg} size="10rem" />
+    <Avatar img={avatarImg} size="20rem" />
     <span>Developed by</span>
     <br />
     <div>

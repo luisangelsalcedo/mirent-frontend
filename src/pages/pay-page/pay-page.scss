@@ -1,0 +1,18 @@
+@import "../../assets/scss/colors.scss";
+@media (min-width: 1px) {
+  .paypage {
+    width: 15rem;
+    .StripeElement {
+      //   border: solid 1px red !important;
+      padding: 10px;
+
+      width: 100%;
+      overflow: hidden;
+      border-radius: 0.5rem;
+      background: $color-grey-0;
+
+      margin-bottom: 0.5rem;
+      position: relative;
+    }
+  }
+}

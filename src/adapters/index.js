@@ -32,3 +32,10 @@ export const agreementAdapter = ({ data } = {}) => ({
   error: data?.error,
   message: data?.message,
 });
+
+export const rentAdapter = ({ data } = {}) => ({
+  rent: data?.data,
+  success: data?.success,
+  error: data?.error,
+  message: data?.message,
+});

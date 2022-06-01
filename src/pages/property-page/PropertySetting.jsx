@@ -32,7 +32,7 @@ export const PropertySetting = () => {
     const { property: updated, message } = propertyAdapter(result);
 
     if (updated) {
-      dispatch(updatePropertyAction(updated, position));
+      dispatch(updatePropertyAction(updated));
       openNotice(message);
     }
   };
@@ -46,6 +46,7 @@ export const PropertySetting = () => {
           check={property?.status?.available}
           changeMode={handleChangeStatus}
         />
+
         {loading && (
           <>
             <Preloading className="inline" /> cargando...

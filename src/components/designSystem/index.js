@@ -14,6 +14,7 @@ import { Preloading, LoadingMain } from "./Preloading";
 import { Card } from "./Card";
 import { MenuItem } from "./MenuItem";
 import { Check } from "./Check/Check";
+import { FaIcon } from "./FaIcon/FaIcon";
 
 export {
   Logo,
@@ -22,6 +23,7 @@ export {
   ColorModeProvider,
   TitleField,
   Btn,
+  FaIcon,
   InputForm,
   Notificaction,
   NotificationProvider,

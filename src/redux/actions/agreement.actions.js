@@ -1,5 +1,4 @@
 import { TYPES } from "../../constants";
-// import { cleanFavs } from "./favs.actions";
 
 // actions
 export const createAgreementAction = (agreement) => ({
@@ -17,12 +16,16 @@ export const updateAgreementAction = (agreement) => ({
   payload: agreement,
 });
 
-// export const getOnePropertyAction = (id) => ({
-//   type: TYPES.GETONEPROPERTY,
-//   payload: id,
-// });
+export const getOneAgreementAction = (id) => ({
+  type: TYPES.GETONEAGREEMENT,
+  payload: id,
+});
 
 export const deleteAgreementAction = (id) => ({
   type: TYPES.DELETEAGREEMENT,
   payload: id,
+});
+
+export const cleanAgreement = () => ({
+  type: TYPES.CLEAN,
 });

@@ -8,8 +8,6 @@ import { userAdapter } from "../../adapters";
 import { getUserAction } from "../../redux/actions";
 import "./profile-page.scss";
 
-// Import required actions.
-
 export const ProfilePage = () => {
   const { id } = useParams();
   const goToProfileEdit = useLinkClickHandler("edit");

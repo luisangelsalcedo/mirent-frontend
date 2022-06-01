@@ -1,6 +1,7 @@
 import React, { useContext, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { userAdapter, agreementAdapter } from "../../adapters";
+import { useParams } from "react-router-dom";
+import { userAdapter, agreementAdapter, propertyAdapter } from "../../adapters";
 import {
   Btn,
   InputForm,
@@ -17,14 +18,16 @@ import {
   invitationUserService,
   sendInvitationUserService,
   updateAgreementService,
+  updatePropertyService,
 } from "../../services";
 
 export const AgreementOccupant = ({ position }) => {
+  const { id: propertyID } = useParams();
   const emailRef = useRef();
   const btnRef = useRef();
   const { loading, callEndpoint } = useFetchAndLoad();
   const { id: userId } = useSelector((state) => state.user.auth);
-  const { agreement } = useSelector((state) => state.agreement);
+  const { property } = useSelector((state) => state.property);
   const dispatch = useDispatch();
   const { openNotice } = useContext(NotificationContext);
 
@@ -35,7 +38,6 @@ export const AgreementOccupant = ({ position }) => {
     const request = {
       email: emailRef.current.value,
     };
-
     const result = await callEndpoint(invitationUserService(userId, request));
     const { message, user } = userAdapter(result);
 
@@ -44,20 +46,18 @@ export const AgreementOccupant = ({ position }) => {
         occupant: user._id,
       };
       const updated = await callEndpoint(
-        updateAgreementService(agreement?._id, update)
+        updatePropertyService(propertyID, update)
       );
-      const { agreement: agreementUpdated } = agreementAdapter(updated);
-      dispatch(updateAgreementAction(agreementUpdated));
-      const { property } = agreementUpdated;
-      property.agreement = agreementUpdated;
-      dispatch(updatePropertyAction(property, position));
+      const { property: propertyUpdated } = propertyAdapter(updated);
+
+      dispatch(updatePropertyAction(propertyUpdated));
       openNotice(message);
     }
   };
 
   const sendInvitation = async () => {
     const result = await callEndpoint(
-      sendInvitationUserService(userId, agreement?.occupant)
+      sendInvitationUserService(userId, property?.occupant)
     );
     const { message, user } = userAdapter(result);
 
@@ -65,24 +65,19 @@ export const AgreementOccupant = ({ position }) => {
   };
 
   const deleteInvitation = async () => {
-    if (!agreement?.occupant?.active) {
+    if (!property?.occupant?.active) {
       //
       const invited = await callEndpoint(
-        deleteUserService(agreement?.occupant?._id)
+        deleteUserService(property?.occupant?._id)
       );
-
       const { success, message } = userAdapter(invited);
       if (success) openNotice(message);
     }
-
     const result = await callEndpoint(
-      updateAgreementService(agreement?._id, { occupant: null })
+      updatePropertyService(property?._id, { occupant: null })
     );
-    const { agreement: agreementUpdated } = agreementAdapter(result);
-    dispatch(updateAgreementAction(agreementUpdated));
-    const { property } = agreementUpdated;
-    property.agreement = agreementUpdated;
-    dispatch(updatePropertyAction(property, position));
+    const { property: propertyUpdated } = propertyAdapter(result);
+    dispatch(updatePropertyAction(propertyUpdated));
     openNotice("invitation removed");
   };
 
@@ -148,29 +143,29 @@ export const AgreementOccupant = ({ position }) => {
       Queda esperar la firma del inquilino
     </>
   );
-
+  // console.log(property);
   return (
     <div>
-      {!agreement?.occupant ? (
+      {!property?.occupant ? (
         invitationForm
       ) : (
         <>
           <div>
             <div className="item-label">
-              {!agreement?.occupant?.active && "Invitado"}
+              {!property?.occupant?.active && "Invitado"}
             </div>
             <Avatar
-              name={agreement?.occupant?.name}
-              img={agreement?.occupant?.image?.thumb}
+              name={property?.occupant?.name}
+              img={property?.occupant?.image?.thumb}
             />
-            {agreement?.occupant?.email}
+            {property?.occupant?.email}
           </div>
 
           <div>
-            {!agreement?.occupant?.active ? (
-              btnsInvitation
-            ) : (
-              <>{!agreement?.status?.signed && deleteOccupant}</>
+            {property?.status?.available && (
+              <>
+                {!property?.occupant?.active ? btnsInvitation : deleteOccupant}
+              </>
             )}
           </div>
         </>

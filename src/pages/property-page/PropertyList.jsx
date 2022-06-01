@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -12,33 +12,54 @@ import {
 import { PropertyForm } from "./PropertyForm";
 import { useFetchAndLoad } from "../../hooks";
 import { propertyAdapter } from "../../adapters";
-import { getAllPropertyService } from "../../services";
+import {
+  getAllPropertyByOccupandService,
+  getAllPropertyService,
+} from "../../services";
 import { getAllPropertyAction } from "../../redux/actions";
 import "./property-list.scss";
 
 export const PropertyList = () => {
-  const { openModal } = useContext(ModalContext);
   const { loading, callEndpoint } = useFetchAndLoad();
   const dispatch = useDispatch();
   const { list } = useSelector((state) => state.property);
-  const { list: arrAgreement } = useSelector((state) => state.agreement);
+  const { id: userID } = useSelector((state) => state.user.auth);
   const { openNotice } = useContext(NotificationContext);
+  const { openModal } = useContext(ModalContext);
+  const [isOccupant, setIsOccupant] = useState(false);
 
   const handleClick = () => {
     openModal(<PropertyForm />);
+    setIsOccupant(false);
   };
 
   const handleLoad = async () => {
+    //
+    //
+    // OWNER
+    //
     const result = await callEndpoint(getAllPropertyService());
     const { property: arrProperties } = propertyAdapter(result);
     if (arrProperties) {
       dispatch(getAllPropertyAction(arrProperties));
+    } else {
+      //
+      //
+      // OCCUPANT
+      //
+      const resultOccupant = await callEndpoint(
+        getAllPropertyByOccupandService(userID)
+      );
+      const { property: properties } = propertyAdapter(resultOccupant);
+      if (properties) {
+        dispatch(getAllPropertyAction(properties));
+        setIsOccupant(true);
+      }
     }
-    await openNotice(`No tienes notificaciones nuevas`);
   };
 
   useEffect(() => {
-    if (!list.length) handleLoad();
+    handleLoad();
   }, []);
 
   const viewEmpty = (
@@ -60,12 +81,14 @@ export const PropertyList = () => {
       <div className="properties-list">
         <div className="title">
           <TitleField text="Mis inmuebles" size="1.5" />
-          <Btn
-            label="Crear una inmueble"
-            fa="plus"
-            btn="outline"
-            onClick={handleClick}
-          />
+          {!isOccupant && (
+            <Btn
+              label="Crear una inmueble"
+              fa="plus"
+              btn="outline"
+              onClick={handleClick}
+            />
+          )}
         </div>
         {list?.map((property, i) => (
           <Card key={i} data={property} i={i} />
@@ -76,11 +99,7 @@ export const PropertyList = () => {
 
   return (
     <div className="properties">
-      {loading ? (
-        <Preloading />
-      ) : (
-        <div>{list.length ? viewFull : viewEmpty}</div>
-      )}
+      {loading || <div>{list.length ? viewFull : viewEmpty}</div>}
     </div>
   );
 };

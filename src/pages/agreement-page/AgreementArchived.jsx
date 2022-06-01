@@ -31,8 +31,7 @@ export const AgreementArchived = ({ id, position }) => {
     if (success) {
       const { property } = deleted;
       dispatch(deleteAgreementAction(id));
-      dispatch(updatePropertyAction(property, position));
-      dispatch(getOnePropertyAction(property._id));
+      dispatch(updatePropertyAction(property));
 
       openNotice(message);
       closeModal();

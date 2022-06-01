@@ -131,6 +131,9 @@ export const ProfileEdit = () => {
               ref={dniRef}
               defaultValue={user?.dni}
               onChange={handleChange}
+              pattern=".*^(?:\+|-)?\d+$.*"
+              title="Ingresa solo números"
+              maxLength="8"
             />
 
             <InputForm
@@ -141,6 +144,7 @@ export const ProfileEdit = () => {
               onChange={handleChange}
               pattern=".*^[9](?:\+|-)?\d+$.*"
               title="Ingresa solo números y empiece con el digito 9"
+              maxLength="9"
             />
           </div>
           <div className="operations">

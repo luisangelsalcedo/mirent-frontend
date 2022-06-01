@@ -65,6 +65,9 @@ a {
   }
 }
 
+.success {
+  color: $color-main;
+}
 .grey {
   background: $color-grey-1;
 }
@@ -143,6 +146,28 @@ a {
     }
     &::before {
       color: #4f717a;
+    }
+  }
+}
+
+.fa {
+  &.mantenimiento {
+    color: $color-red;
+  }
+  &.disponible {
+    color: #ffc42c;
+  }
+  &.alquilado {
+    color: $color-main;
+  }
+}
+
+.credits-page {
+  .avatar {
+    .img {
+      width: 10rem;
+      height: 10rem;
+      border-radius: 10rem;
     }
   }
 }

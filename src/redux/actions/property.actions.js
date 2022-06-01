@@ -12,17 +12,21 @@ export const getAllPropertyAction = (arr) => ({
   payload: arr,
 });
 
-export const updatePropertyAction = (property, position) => ({
+export const updatePropertyAction = (property) => ({
   type: TYPES.UPDATEPROPERTY,
-  payload: { property, position },
+  payload: property,
 });
 
-export const getOnePropertyAction = (id) => ({
+export const getOnePropertyAction = (property) => ({
   type: TYPES.GETONEPROPERTY,
-  payload: id,
+  payload: property,
 });
 
 export const deletePropertyAction = (id) => ({
   type: TYPES.DELETEONEPROPERTY,
   payload: id,
+});
+
+export const cleanProperty = () => ({
+  type: TYPES.CLEAN,
 });

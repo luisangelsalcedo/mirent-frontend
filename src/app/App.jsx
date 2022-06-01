@@ -10,6 +10,7 @@ import {
 import "../assets/scss/main.scss";
 import "font-awesome/css/font-awesome.min.css";
 import "react-datepicker/dist/react-datepicker.css";
+import "moment/locale/es";
 import { ReduxStoreProvider } from "../redux";
 
 const MainRouter = lazy(() => import("../routes"));

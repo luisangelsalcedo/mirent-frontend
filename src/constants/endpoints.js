@@ -6,4 +6,5 @@ export const ENDPOINTS = {
   USER: "/api/user",
   PROPERTY: "/api/property",
   AGREEMENT: "/api/agreement",
+  RENT: "/api/rent",
 };
