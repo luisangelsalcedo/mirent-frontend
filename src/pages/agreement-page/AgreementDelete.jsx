@@ -16,7 +16,7 @@ import {
 } from "../../redux/actions";
 import { deleteAgreementService } from "../../services";
 
-export const AgreementDelete = ({ id, position }) => {
+export const AgreementDelete = ({ id }) => {
   const dispatch = useDispatch();
 
   const { loading, callEndpoint } = useFetchAndLoad();
@@ -31,8 +31,7 @@ export const AgreementDelete = ({ id, position }) => {
       const { property } = deleted;
 
       dispatch(deleteAgreementAction(id));
-      dispatch(updatePropertyAction(property, position));
-      dispatch(getOnePropertyAction(property._id));
+      dispatch(updatePropertyAction(property));
 
       openNotice(message);
       closeModal();

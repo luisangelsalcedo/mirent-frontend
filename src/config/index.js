@@ -15,4 +15,7 @@ export const config = {
   tinymce: {
     key: process.env.REACT_APP_TINY_MCE,
   },
+  stripe: {
+    publicKey: process.env.REACT_APP_STRIPE_PUBLIC_KEY,
+  },
 };

@@ -41,8 +41,7 @@ export const NotificationProvider = ({ children }) => {
     (error) => {
       const { message } = error.response.data;
 
-      openAlert(message);
-
+      if (error.response.status !== 500) openAlert(message);
       return Promise.reject(error);
     }
   );

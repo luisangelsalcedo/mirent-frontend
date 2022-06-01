@@ -22,6 +22,16 @@ export const createPropertyService = (property) => {
   };
 };
 
+export const getPropertyService = (id) => {
+  const controller = loadAbort();
+  return {
+    call: axiosHTTPclient.get(`${ENDPOINTS.PROPERTY}/${id}`, {
+      signal: controller.signal,
+    }),
+    controller,
+  };
+};
+
 export const updatePropertyService = (id, property) => {
   const controller = loadAbort();
   return {
@@ -36,6 +46,16 @@ export const deletePropertyService = (id) => {
   const controller = loadAbort();
   return {
     call: axiosHTTPclient.delete(`${ENDPOINTS.PROPERTY}/${id}`, {
+      signal: controller.signal,
+    }),
+    controller,
+  };
+};
+
+export const getAllPropertyByOccupandService = (id) => {
+  const controller = loadAbort();
+  return {
+    call: axiosHTTPclient.get(`${ENDPOINTS.USER}/${id}/property`, {
       signal: controller.signal,
     }),
     controller,

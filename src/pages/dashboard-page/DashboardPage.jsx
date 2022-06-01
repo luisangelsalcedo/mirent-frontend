@@ -18,10 +18,9 @@ import { CreditsPage } from "../credits-page/CreditsPage";
 export const DashboardPage = () => {
   const { name, image, id: userID } = useSelector((state) => state.user.auth);
   const dispatch = useDispatch();
-  const { id: isOpen } = useParams();
   const { openModal } = useContext(ModalContext);
   const { openNotice } = useContext(NotificationContext);
-
+  const { id: isOpen } = useParams();
   const goToProfile = useLinkClickHandler(`user/${userID}`);
   const goToHome = useLinkClickHandler(`/dashboard`);
 
@@ -38,35 +37,40 @@ export const DashboardPage = () => {
     openModal("<NotificationsPage />");
   };
 
+  const header = (
+    <div className="container">
+      <div>
+        <Logo onClick={openCredits} />
+        <div className="separador" />
+        <Btn fa="home" btn="circle" onClick={goToHome} />
+        <Btn fa="bell-o" btn="circle" onClick={openNotifications} />
+      </div>
+      <div>
+        <Avatar name={name} img={image} handler={goToProfile} />
+        <Btn label="Salir" fa="sign-out" onClick={handleLogout} />
+      </div>
+      <ToggleMode />
+    </div>
+  );
+
+  const body = (
+    <>
+      <div className="dashboard-body-left bg-red">
+        <PropertyList />
+      </div>
+      <div className="dashboard-body-right">
+        <div className="container">
+          <Outlet />
+        </div>
+      </div>
+    </>
+  );
+
   return (
     <div className={`${isOpen ? "active" : ""}`}>
       <div className="dashboard">
-        <div className="dashboard-header">
-          <div className="container">
-            <div>
-              <Logo onClick={openCredits} />
-              <div className="separador" />
-              <Btn fa="home" btn="circle" onClick={goToHome} />
-              <Btn fa="bell-o" btn="circle" onClick={openNotifications} />
-            </div>
-
-            <div>
-              <Avatar name={name} img={image} handler={goToProfile} />
-              <Btn label="Salir" fa="sign-out" onClick={handleLogout} />
-            </div>
-            <ToggleMode />
-          </div>
-        </div>
-        <div className="dashboard-body">
-          <div className="dashboard-body-left bg-red">
-            <PropertyList />
-          </div>
-          <div className="dashboard-body-right">
-            <div className="container">
-              <Outlet />
-            </div>
-          </div>
-        </div>
+        <div className="dashboard-header">{header}</div>
+        <div className="dashboard-body">{body}</div>
       </div>
     </div>
   );

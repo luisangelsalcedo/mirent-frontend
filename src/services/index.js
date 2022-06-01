@@ -12,16 +12,25 @@ import {
 
 import {
   getAllPropertyService,
+  getPropertyService,
   updatePropertyService,
   deletePropertyService,
+  getAllPropertyByOccupandService,
 } from "./property.service";
 
 import {
   getAllAgreementByPropertyService,
   createAgreementService,
   deleteAgreementService,
+  getAgreementService,
   updateAgreementService,
 } from "./agreement.service";
+import {
+  getAllRentByPropertyService,
+  createRentService,
+  deleteRentService,
+  payRentService,
+} from "./rent.service";
 
 export {
   loginService,
@@ -29,6 +38,7 @@ export {
   validateTokenService,
   recoverPasswordService,
   updateUserService,
+  getPropertyService,
   deleteUserService,
   getUserService,
   getAllPropertyService,
@@ -38,6 +48,12 @@ export {
   createAgreementService,
   deleteAgreementService,
   updateAgreementService,
+  getAgreementService,
   invitationUserService,
   sendInvitationUserService,
+  getAllRentByPropertyService,
+  createRentService,
+  deleteRentService,
+  getAllPropertyByOccupandService,
+  payRentService,
 };

@@ -16,7 +16,7 @@ import {
   updatePropertyAction,
 } from "../../redux/actions";
 
-export const AgreementForm = ({ id, position }) => {
+export const AgreementForm = ({ id }) => {
   const { openNotice } = useContext(NotificationContext);
   const { closeModal } = useContext(ModalContext);
   const { loading, callEndpoint } = useFetchAndLoad();
@@ -31,7 +31,7 @@ export const AgreementForm = ({ id, position }) => {
     ref.current = date;
     setState(date);
     let isDisabled = true;
-    if (btnRef.current && endDateRef.current) isDisabled = false;
+    if (startDateRef.current && endDateRef.current) isDisabled = false;
     btnRef.current.disabled = isDisabled;
   };
 
@@ -42,16 +42,13 @@ export const AgreementForm = ({ id, position }) => {
       startdate: startDateRef.current,
       enddate: endDateRef.current,
     };
-    const result = await callEndpoint(createAgreementService(newAgreement));
+    const result = await callEndpoint(createAgreementService(id, newAgreement));
     const { message, agreement } = agreementAdapter(result);
     const { property } = agreement;
 
-    property.agreement = agreement;
-
     if (agreement) {
       dispatch(createAgreementAction(agreement));
-      dispatch(updatePropertyAction(property, position));
-      dispatch(getOnePropertyAction(id));
+      dispatch(updatePropertyAction(property));
       closeModal();
       openNotice(message);
     }

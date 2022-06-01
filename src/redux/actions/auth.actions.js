@@ -1,5 +1,7 @@
 import { TYPES } from "../../constants";
-// import { cleanFavs } from "./favs.actions";
+import { cleanAgreement } from "./agreement.actions";
+import { cleanProperty } from "./property.actions";
+import { cleanRent } from "./rent.action";
 
 // actions
 export const loginAction = (payload) => ({
@@ -27,6 +29,8 @@ export const updateUserAction = (user) => ({
 });
 
 export const exit = () => async (dispatch) => {
-  dispatch(logoutAction());
-  //   dispatch(cleanFavs());
+  await dispatch(cleanProperty());
+  await dispatch(cleanAgreement());
+  await dispatch(cleanRent());
+  await dispatch(logoutAction());
 };

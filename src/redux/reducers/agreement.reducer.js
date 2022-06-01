@@ -8,8 +8,8 @@ const initialState = {
 const agreementReducer = (state = initialState, action) => {
   switch (action.type) {
     case TYPES.CREATEAGREEMENT: {
-      const arr = [...state.list, action.payload];
-      return { ...state, list: arr, agreement: action.payload };
+      const list = [...state.list, action.payload];
+      return { ...state, list, agreement: action.payload };
     }
 
     case TYPES.GETALLAGREEMENT: {
@@ -19,27 +19,21 @@ const agreementReducer = (state = initialState, action) => {
 
     case TYPES.UPDATEAGREEMENT: {
       const agreement = action.payload;
-      const arr = [...state.list].map((a) =>
-        a._id === agreement?._id ? agreement : a
+      const list = [...state.list].map((a) =>
+        a?._id === agreement?._id ? agreement : a
       );
-      return { ...state, list: arr, agreement };
+      return { ...state, list, agreement };
     }
-
-    // case TYPES.GETONEPROPERTY: {
-    //   const id = action.payload;
-    //   const arr = [...state.list];
-    //   const property = arr.find((p) => p?._id === id);
-    //   //   console.log(property);
-
-    //   return { ...state, property };
-    // }
 
     case TYPES.DELETEAGREEMENT: {
       const id = action.payload;
       const arr = state.list.filter((a) => a?._id !== id);
       const agreement = {};
-
       return { ...state, list: arr, agreement };
+    }
+
+    case TYPES.CLEAN: {
+      return initialState;
     }
 
     default:

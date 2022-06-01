@@ -30,13 +30,6 @@ export const PropertyEdit = () => {
   const { openModal } = useContext(ModalContext);
   const { loading, callEndpoint } = useFetchAndLoad();
 
-  const setValues = () => {
-    nameRef.current.value = property?.name;
-    priceRef.current.value = property?.price;
-    addressRef.current.value = property?.address;
-    detailsRef.current.value = property?.details;
-  };
-
   const handleChange = () => {
     const nameVal = nameRef.current.value;
     const priceVal = priceRef.current.value;
@@ -56,15 +49,12 @@ export const PropertyEdit = () => {
 
     const result = await callEndpoint(updatePropertyService(id, updated));
     const { property: updatedProperty, message } = propertyAdapter(result);
+
     if (updatedProperty) {
-      dispatch(updatePropertyAction(updatedProperty, position));
+      dispatch(updatePropertyAction(updatedProperty));
       openNotice(message);
     }
   };
-
-  useEffect(() => {
-    setValues();
-  }, [property]);
 
   return (
     <>
@@ -114,14 +104,16 @@ export const PropertyEdit = () => {
             disabled={loading}
           />
         )}
-        <Btn
-          ref={btnRef}
-          label="Eliminar inmueble"
-          btn="danger"
-          className="btn-block"
-          disabled={loading}
-          onClick={() => openModal(<PropertyDelete id={id} />)}
-        />
+        {property?.status?.maintenance && (
+          <Btn
+            ref={btnRef}
+            label="Eliminar inmueble"
+            btn="danger"
+            className="btn-block"
+            disabled={loading}
+            onClick={() => openModal(<PropertyDelete id={id} />)}
+          />
+        )}
       </form>
     </>
   );

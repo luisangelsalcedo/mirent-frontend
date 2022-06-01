@@ -26,35 +26,23 @@ export const Card = ({ data, i }) => {
       <summary onClick={data?._id === paramID ? goToClose : goToOpen}>
         <span>
           <h4>{data?.name}</h4>
-          <div>{!!data?.agreement?.occupant || "Agregar inquilino"}</div>
+          {/* <div>{!!data?.agreement?.occupant || "Agregar inquilino"}</div> */}
 
           {data?.status?.maintenance && (
             <div className="card-status">
-              <i className="fa fa-info-circle" aria-hidden="true" />
-              &nbsp;&nbsp; Por configurar
+              <i className="fa fa-cog mantenimiento" aria-hidden="true" />
+              &nbsp;&nbsp; En mantenimiento
             </div>
           )}
           {data?.status?.available && (
             <div className="card-status">
-              <i className="fa fa-info-circle" aria-hidden="true" />
+              <i className="fa fa-info-circle disponible" aria-hidden="true" />
               &nbsp;&nbsp; Disponible
             </div>
           )}
-          {data?.agreement?.status?.disabled && (
+          {data?.status?.rented && (
             <div className="card-status">
-              <i className="fa fa-info-circle" aria-hidden="true" />
-              &nbsp;&nbsp; Contrato por editar
-            </div>
-          )}
-          {data?.agreement?.status?.active && (
-            <div className="card-status">
-              <i className="fa fa-info-circle" aria-hidden="true" />
-              &nbsp;&nbsp; Contrato por firmar
-            </div>
-          )}
-          {data?.agreement?.status?.signed && (
-            <div className="card-status">
-              <i className="fa fa-check-circle" aria-hidden="true" />
+              <i className="fa fa-check-circle alquilado" aria-hidden="true" />
               &nbsp;&nbsp; Alquilado
             </div>
           )}

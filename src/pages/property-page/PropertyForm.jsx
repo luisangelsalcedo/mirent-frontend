@@ -67,7 +67,7 @@ export const PropertyForm = () => {
         />
         <InputForm
           ref={priceRef}
-          placeholder="Aquiler mensual"
+          placeholder="Aquiler mensual (USD)"
           fa="money"
           onChange={handleChange}
           required

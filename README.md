@@ -7,8 +7,12 @@
 <img src="https://img.icons8.com/color/32/000000/sass.png"/>&nbsp;&nbsp;
 <img src="https://axios-http.com/assets/favicon.ico" width='28'/>&nbsp;&nbsp;
 <img src="https://cloudinary-res.cloudinary.com/image/upload/website/cloudinary_web_favicon.png" width="30"/>&nbsp;&nbsp;
+<img src="https://avatars.githubusercontent.com/u/4129662?s=28&v=4"/>&nbsp;&nbsp;
+<img src="https://cdn.iconscout.com/icon/free/png-256/stripe-2-498440.png" width="30"/>&nbsp;&nbsp;
 <img src="https://img.icons8.com/color/32/000000/eslint.png"/>&nbsp;&nbsp;
-<img src="https://prettier.io/icon.png"  width='30'/>
+<img src="https://prettier.io/icon.png"  width='30'/>&nbsp;&nbsp;
+<img src="https://cdn.freebiesupply.com/logos/large/2x/netlify-logo-png-transparent.png"  width='30'/>
+
 </div>
 
 ## [Repositorio](https://github.com/luisangelsalcedo/mirent-frontend) &nbsp;&nbsp;|&nbsp;&nbsp; [UI Design](https://www.figma.com/file/THzVuOpySwNE9E4IcwLQZ7/mirentApp?node-id=0%3A1) &nbsp;&nbsp;|&nbsp;&nbsp; [Deploy](https://mirent-app-luissg.netlify.app) &nbsp;&nbsp;|&nbsp;&nbsp; [Backend](https://github.com/luisangelsalcedo/mirent-api)

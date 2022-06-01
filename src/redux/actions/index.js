@@ -12,13 +12,25 @@ import {
   updatePropertyAction,
   getOnePropertyAction,
   deletePropertyAction,
+  cleanProperty,
 } from "./property.actions";
 import {
   createAgreementAction,
   getAllAgreementAction,
   updateAgreementAction,
+  getOneAgreementAction,
   deleteAgreementAction,
+  cleanAgreement,
 } from "./agreement.actions";
+
+import {
+  createRentAction,
+  getAllRentAction,
+  updateRentAction,
+  getOneRentAction,
+  deleteRentAction,
+  cleanRent,
+} from "./rent.action";
 
 export {
   registerAction,
@@ -35,5 +47,14 @@ export {
   createAgreementAction,
   getAllAgreementAction,
   updateAgreementAction,
+  getOneAgreementAction,
   deleteAgreementAction,
+  createRentAction,
+  getAllRentAction,
+  updateRentAction,
+  getOneRentAction,
+  deleteRentAction,
+  cleanProperty,
+  cleanAgreement,
+  cleanRent,
 };

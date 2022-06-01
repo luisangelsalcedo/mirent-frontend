@@ -4,7 +4,7 @@ import { loadAbort } from "../utils";
 
 export const getAllAgreementByPropertyService = (propertyID) => {
   const controller = loadAbort();
-  const endpoint = `${ENDPOINTS.AGREEMENT}/property/${propertyID}`;
+  const endpoint = `${ENDPOINTS.PROPERTY}/${propertyID}/agreement`;
   return {
     call: axiosHTTPclient.get(endpoint, {
       signal: controller.signal,
@@ -13,10 +13,24 @@ export const getAllAgreementByPropertyService = (propertyID) => {
   };
 };
 
-export const createAgreementService = (agreement) => {
+export const createAgreementService = (propertyID, agreement) => {
   const controller = loadAbort();
   return {
-    call: axiosHTTPclient.post(`${ENDPOINTS.AGREEMENT}`, agreement, {
+    call: axiosHTTPclient.post(
+      `${ENDPOINTS.PROPERTY}/${propertyID}/agreement`,
+      agreement,
+      {
+        signal: controller.signal,
+      }
+    ),
+    controller,
+  };
+};
+
+export const getAgreementService = (id) => {
+  const controller = loadAbort();
+  return {
+    call: axiosHTTPclient.get(`${ENDPOINTS.AGREEMENT}/${id}`, {
       signal: controller.signal,
     }),
     controller,
